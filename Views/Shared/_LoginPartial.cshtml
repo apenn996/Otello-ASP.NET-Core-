@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @* 
+        
+    <li class="nav-item">
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+    </li>
+     *@
+    
+    
+    <li class="dropdown text d-flex justify-content-center align-items-center">
+        <a class="navlink-container btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+
+            <div class=" d-flex justify-content-center align-items-center">
+                <div class=" d-flex justify-content-center align-items-center">
+                    <img id="avatar-img" src="~/assets/avatar-light.png" alt="avatar image" />
+
+                </div>
+                <div class=" ">
+                    <small>
+                        Welcome
+                    </small>
+                    <h6 asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @User.Identity?.Name</h6>
+                </div>
+            </div>
+        </a>
+        <ul class="navlink-dropdown dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li class="navlink-dropdown-item col-12">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link text-dark col-12">Logout</button>
+                </form>
+
+            <li class="navlink-dropdown-item col-12">
+                        <a class=" nav-link btn btn-link text-dark position-relative d-flex justify-content-center align-items-center" asp-controller="ShoppingCart" asp-action="Index">
+                Cart</a>
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+    
+    @* <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li> *@
+
+    <li class="navlink-container d-flex justify-content-center align-items-center">
+        <a class=" text-decoration-none text-light" asp-area="Identity" asp-page="/Account/Login">
+            <div class=" d-flex justify-content-center align-items-center">
+                <div class=" d-flex justify-content-center align-items-center">
+                    <img id="avatar-img" src="~/assets/avatar-light.png" alt="avatar image" />
+
+                </div>
+                <div class=" ">
+                    <small>
+                        Sign in
+                    </small>
+                    <h6>Account</h6>
+                </div>
+            </div>
+        </a>
+    </li>
+}
+

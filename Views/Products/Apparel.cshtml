@@ -1,0 +1,82 @@
+﻿@using Otello.Models
+@model ViewModel
+
+@{
+    ViewData["Title"] = "Apparel";
+}
+
+
+<div class=" col-12 overflow-hidden">
+    <div class="position-relative">
+        <div class="product-overlay text d-flex justify-content-center align-items-center">
+            <div class="overlay-text-container fit text-center" >
+                <h1 style="font-size: 45px;" class="">Winter Wear</h1>
+                <p style="font-size: 20px;">Beat the lowest temps at the lowest prices.</p>
+                <a asp-controller="Products" asp-action="Index" class="btn btn-light hero-button"> Shop Now</a>
+            </div>
+            
+        </div>
+        <img style="min-width: 100%; height: 500px; object-fit: cover; object-position: 0% 0%" src="~/assets/test.JPG" />
+    </div>
+    
+    <div class="container-fluid col-10 ">
+        <div class="row justify-content-center align-items-center m-5 text-center">
+           <h1 class="fw-bold">Shop By Category</h1>
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Womens">
+                        <img class="" src="~/assets/Products/Apparel/Womens/womens-ad.png" />
+                        <h5 class="text-black text-center">Women's</h5>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="product-circle">
+                    <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Mens">
+                        <img class="" src="~/assets/Products/Apparel/Mens/mens-ad.png" />
+                        <h5 class="text-black text-center">Men's</h5>
+                    </a>
+                    </div>
+            </div> 
+               
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Shoe">
+                        <img class="" src="~/assets/Products/Apparel/Shoes/shoe-ad.jpg" />
+                        <h5 class="decoration-none text-black text-center">Shoes</h5>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Accessories">
+                        <img class="" src="~/assets/Products/Apparel/Accessories/accessories-ad.jpg" />
+                        <h5 class="text-black text-center">Accessories</h5>
+                    </a>
+                </div>
+            </div>
+           
+            
+        </div>
+        <div class="row justify-content-between align-items-center m-5 text-center ">
+            <div class="half-block  bg-danger">
+
+            </div>
+            <div class="half-block bg-success ">
+
+            </div> 
+        </div>
+        <div class="row justify-content-center align-items-center m-5 text-center ">
+            <div class="full-block  bg-danger">
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+    
+    
+    
+

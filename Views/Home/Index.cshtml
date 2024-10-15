@@ -1,0 +1,140 @@
+﻿@using Otello.Models
+@model ViewModel
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Otello | Elevate Your Everyday Shopping.";
+    List<string> brandFilter = new List<string>();
+    List<string> imageList = new List<string>();
+}
+<div class="container-fluid col-10 ">
+    <div class="row justify-content-center mt-5" >
+        <div class="deals-grid">
+            <div class="deals-grid-item">
+                <div class="thumbnail-header text-center ">
+                    <h2>Shop the latest tech</h2>
+                    
+                </div>
+                <img class="thumbnail-images" src="/assets/thumbnails/tech2.jpg" />
+            </div>
+            <div class="deals-grid-item" style="grid-column: 2 ; grid-row: 1 / span 2; ">
+                <div class="thumbnail-header text-center mt-5" style="">
+                    <h1 class="fw-bold">For the Halloween prepper</h1>  
+                    
+              </div>
+                <img class="thumbnail-images" src="/assets/thumbnails/halloween2.jpg" />    
+            </div> 
+            <div class="deals-grid-item" style="grid-column: 3 / span 2; grid-row: 1 / span 1; ">
+              <div class="thumbnail-header mt-5">
+                    <h1>Back to school specials</h1> 
+                    <h6>Find supplies for your K through College student.</h6>
+                </div>
+                    
+                <img class="thumbnail-images" src="/assets/thumbnails/back-to-school.jpg" />
+            </div>
+            <div class="deals-grid-item justify-content-center align-items-center" style="grid-column: 2 / span 2; grid-row: 3 / span 1; ">
+                <div class="thumbnail-header text-center mb-5"> 
+                    <h2 class="fw-bold">Seasons Greetings</h2>
+                    <h6>Welcome fall with our colletion of fall themed decorations.</h6>
+                </div>
+                <img class="thumbnail-images" src="/assets/thumbnails/fall.jpeg" />
+            </div>
+            <div class="deals-grid-item" style="grid-column: 1 / span 1; grid-row: 2 / span 2; ">
+                <a class="fill position-relative" asp-controller="Products" asp-action="Apparel" >
+                    
+                <div class="thumbnail-header text-start text-light h-100 d-flex flex-column justify-content-end align-items-center  ">
+                    <h2 class="fw-bold">Your wardrobe, Your way</h2>
+                    <h6>Discover your look through our assortment of the latest looks</h6>
+                </div>
+                <img class="thumbnail-images" src="/assets/thumbnails/fashion.jpg" />
+                </a>
+            </div>
+            <div class="deals-grid-item" style="grid-column: 4 / span 1; grid-row: 2 / span 2; ">
+                
+                    <img class="thumbnail-images" src="/assets/thumbnails/outdoors.jpeg" />
+
+            </div>
+            <div class="deals-grid-item ">
+                <div class="thumbnail-header text-start mb-5 col-6 ">
+                    <h2 class="fw-light">Freshness Delivered: From Farm to Your Doorstep</h2>
+                    
+                </div>
+                <img class="thumbnail-images" src="/assets/thumbnails/produce.jpeg" />
+
+
+            </div>
+             
+           
+        </div>
+
+        
+    </div>
+    <div class="row justify-content-center mt-3 ">
+        <div class="my-pad">
+            <div class="tip d-flex justify-content-center align-items-center">
+                <h4>Sign up or log in to start filling your cart.</h4>
+                <a class="signup-button text-decoration-none" asp-controller="ShoppingCart" asp-action="Index">
+                    <p class="text-black fs-6 mb-0">View my cart</p>
+                </a>
+            </div>
+        </div>
+       
+        </div>
+    
+    <div class="row mt-5 ">
+        <h1 class="my-pad">Get ready for the big game</h1>
+        <div class="cover">
+            <button class="left" onclick="leftScroll()">
+                <div style="height: 50px; width: 50px; border-radius: 100%;  border: 1px solid black;" class="dim d-flex justify-content-center align-items-center m-0 p-0">
+                    <img style="width: 70%; height: 70%; background-color:transparent" src="assets/left-a.png" />
+
+                </div>
+            </button>
+            <ul class="plain-list horizontal-product-list scroll-images pt-4 pb-4">
+                                    
+                @{
+                    List<string> uniqueproduct = new List<string>();
+                }
+        
+        @foreach(var productImage in Model.ProductImagesModel)
+        {
+                    @foreach (var product in Model.ProductModel)
+                    {
+
+                        if (product.Id == productImage.ProductId && !uniqueproduct.Contains(product.Id.ToString()))
+                        {
+                            uniqueproduct.Add(product.Id.ToString());
+                            <li class="me-3">
+                                <div class=" text  m-2 p-0 overflow-hidden">
+
+                                    <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
+
+                                        <img class="horizontal-product-list-image" src="@(productImage.Image1)" alt="product image for " />
+                                        <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
+                                        <h4 class="fs-5">@(product.Name)</h4>
+                                        <p>@ViewBag.chosenMax</p>
+                                        <h4 class="mb-0 fs-6">@(product.Brand) • @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h4>
+
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                       
+                    }
+
+                }
+         
+        </ul>
+            <button class="right" onclick="rightScroll()">
+                <div style="height: 50px; width: 50px; border-radius: 100%;  border: 1px solid black;" class="dim d-flex justify-content-center align-items-center m-0 p-0">
+                    <img style="width: 70%; height: 70%; background-color:transparent" src="assets/right-a.png" />
+                </div>
+               
+            </button>
+        </div>
+        
+
+           
+    
+    </div>
+</div>
+

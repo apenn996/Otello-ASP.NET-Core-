@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom border-light box-shadow p-3 ">
+    <div class="container-fluid col-12 col-md-11">
+        <a class="navbar-brand navlink-container text-white" asp-area="" asp-controller="Home" asp-action="Index">Otello</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex ">
+            <ul class="navbar-nav flex-grow-1 justify-content-end align-items-center">
+                <li class=" nav-item">
+                    <a class="navlink-container nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class=" nav-item">
+                    <a class="navlink-container nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                </li>
+
+                <partial name="_LoginPartial" />
+            </ul>
+            <a class="navlink-container nav-link text-light position-relative d-flex justify-content-center align-items-center" asp-controller="ShoppingCart" asp-action="Index">
+                <img id="shoppingCart" src="~/assets/cart-light.png" alt="shopping cart image">
+                <div class="d-flex justify-content-center align-items-center" id="shoppingCartQuantity">
+                   
+                         @if (SignInManager.IsSignedIn(User))
+                        {
+                           @*  @foreach (ShoppingCart shoppingCart in ViewBag.ShoppingCartModel)
+                            {
+                                @foreach (Product product in ViewBag.ProductModel)
+                                {
+                                    @foreach (ProductImages productImages in ViewBag.ProductImagesModel)
+                                    {
+                                        if (shoppingCart.UserId == User.Identity.Name)
+                                        {
+                                            <p class="fs-6 text-center mb-0 ">a</p>
+                                        }
+                                   
+                                    }
+                                }
+                            } *@
+                        }
+                        else
+                        {
+                            <p class="fs-6 text-center mb-0 ">0</p>
+                        } 
+                    
+                            
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,120 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+	ViewData["Title"] = "Your Cart";
+	bool first = true;
+	long CartPrice = 0;
+	int cartLength = 0;
+}
+
+
+@if (SignInManager.IsSignedIn(User)  )
+{
+	<div style="margin-top: 60px;" class="container-fluid col-10 ">
+		<div class="row d-flex">
+			<div style="background-color: #f6f6f6;" class="col-8 p-5">
+
+
+				@foreach (ShoppingCart shoppingCart in ViewBag.ShoppingCartModel)
+				{
+					if (shoppingCart.UserId == User.Identity?.Name)
+					{
+						<div class="row cart-item">
+							@{
+								CartPrice += shoppingCart.TotalCost;
+								cartLength++;
+							}
+							@if (shoppingCart.UserId == User.Identity?.Name)
+							{
+								@foreach (ProductVariations productVariation in ViewBag.Pe)
+								{
+									@foreach (ProductImages item2 in ViewBag.ProductImagesModel)
+									{
+										if (item2.ProductId == productVariation.productId && shoppingCart.VariationId == productVariation.Id && item2.colorId == productVariation.colorId)
+										{
+											<div class="col-3 ">
+												<img class="cart-image " src="@(item2.Image1)" />
+											</div>
+										}
+									}
+								}
+								@foreach (ProductVariations productVariation in ViewBag.Pe)
+								{
+									if (productVariation.Id == shoppingCart.VariationId)
+									{
+										@foreach (Product product in ViewBag.ProductModel)
+										{
+											@foreach (ProductColors color in ViewBag.ColorModel)
+											{
+												@foreach (ProductSizes size in ViewBag.SizeModel)
+												{
+													if (product.Id == productVariation.productId && productVariation.colorId == color.Id && productVariation.sizeId == size.Id)
+													{
+														<div class="col-8 position-relative">
+															<a class="text-decoration-none text-black" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@(product.Id)" asp-route-colorId="@(productVariation.colorId)" asp-route-sizeId="@(productVariation.sizeId)" asp-route-variationId="@(productVariation.Id)">
+																<h2 class="mb-4">@(product.Name)</h2>
+															</a>
+
+															@* <h5>@(product.Id)</h5> *@
+															@{
+																var stock = (product.Stock > 30) ? "text-success" : (product.Stock > 15) ? "text-warning" : "text-danger";
+															}
+															<h6 class="@stock">@(product.Stock) left in stock</h6>
+															<h5><span class="fw-bold">Brand:</span> @(product.Brand)</h5>
+															<h5><span class="fw-bold">Item:</span> @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
+															<h5><span class="fw-bold">Style:</span>  @(color.Color) - <span class="fw-bold">Size:</span> @(size.Size)</h5>
+															<div style="bottom: 0px;" class="position-absolute ">
+																<a asp-action="Edit" asp-route-id="@shoppingCart.Id">Edit</a> |
+																@*<a asp-action="Details" asp-route-id="@shoppingCart.Id">Details</a> | *@
+																<a asp-action="Delete" asp-route-id="@shoppingCart.Id" asp-route-pId="@product.Id">Delete</a>
+															</div>
+
+														</div>
+													}
+												}
+											}
+										}
+									}
+								}
+								<div class="text-end col-1  position-relative m-0 p-0">
+									<h2>$@shoppingCart.TotalCost</h2>
+									@if (first)
+									{
+										<h6 style="position: absolute; top: -40px; right: 0px;">Price</h6>
+										first = false;
+									}
+
+								</div>
+							}
+						</div>
+					}
+					
+				}
+
+
+
+			</div>
+			<div class="cart-summary col-4">
+				<div style="background-color: #f6f6f6;" class=" p-4 ">
+					<h2 class="mb-3">Your Summary</h2>
+					<h5>Number of items: @(cartLength)</h5>
+					<h5 class="">Subtotal: $@CartPrice</h5>
+					<button type="button" class="btn checkout-button mt-4" onclick="">
+						<h5 class="text-black fs-6 m-0">Proceed to checkout</h5>
+					</button>
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+	</div>
+}
+else
+{
+	<h2>not logged in</h2>
+}
