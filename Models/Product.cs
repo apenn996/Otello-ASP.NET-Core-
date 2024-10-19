@@ -13,7 +13,7 @@ namespace Otello.Models
         public float? Rating { get; set; }
         public int Stock { get; set; }
        
-        public long Price { get; set; }
+        public double Price { get; set; }
         public int CategoryId{ get; set; }
         public string Type { get; set; }
         public char Sex { get; set; }

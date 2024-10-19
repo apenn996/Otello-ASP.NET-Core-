@@ -1,0 +1,83 @@
+﻿@using Otello.Models
+@model ViewModel
+
+@{
+    ViewData["Title"] = "Grocery";
+}
+
+
+<div class=" col-12 overflow-hidden">
+    <div class="position-relative">
+        <div class="product-overlay text d-flex justify-content-center align-items-center">
+            <div class="overlay-text-container fit text-center">
+                <h1 style="font-size: 45px;" class="">Fresh Fruit</h1>
+                <p style="font-size: 20px;">Fresh from the Farm to Your Table</p>
+                <a asp-controller="Products" asp-action="Index" class="btn btn-light hero-button"> Shop Now</a>
+            </div>
+
+        </div>
+        <img style="min-width: 100%; height: 500px; object-fit: cover; object-position: 0% 0%" src="~/assets/Products/Grocery/grocery-banner.jpg" />
+    </div>
+
+    <div class="container-fluid col-10 ">
+        <div class="row justify-content-center align-items-center m-5 text-center">
+            <h1 class="fw-bold">Shop By Category</h1>
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Produce">
+                        <img class="" src="~/assets/Products/Grocery/Produce/produce-circle.jpg" />
+                        <h5 class="text-black text-center">Produce</h5>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Snacks">
+                        <img class="" src="~/assets/Products/Grocery/Snacks/snacks-circle.webp" />
+                        <h5 class="text-black text-center">Snacks</h5>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Pets">
+                        <img class="object-fit-fit" src="~/assets/Products/Grocery/Pets/pets-circle.jpg" />
+                        <h5 class="decoration-none text-black text-center">Pet Care</h5>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Condiments">
+                        <img class="" src="~/assets/Products/Grocery/Condiments/condiments-circle.webp" />
+                        <h5 class="text-black text-center">Condiments & Spices</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Frozen">
+                        <img class="" src="~/assets/Products/Grocery/Frozen/frozen-circle.webp" />
+                        <h5 class="text-black text-center">Frozen</h5>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="row justify-content-between align-items-center m-5 text-center ">
+            <div class="half-block  bg-danger">
+            </div>
+            <div class="half-block bg-success ">
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center m-5 text-center ">
+            <div class="full-block  bg-danger">
+            </div>
+
+        </div>
+
+    </div>
+</div>

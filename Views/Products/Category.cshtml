@@ -2,7 +2,7 @@
 @model ViewModel
 @using Newtonsoft.Json
 @{
-    ViewData["Title"] = "Apparel";
+    ViewData["Title"] = ViewBag.Type;
     List<string> brandFilter = new List<string>();
     List<string> imageList = new List<string>();
     foreach (var item in ViewBag.FilterList)
@@ -76,46 +76,50 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                            <div class=" col-11 d-flex justify-content-between align-items-baseline">
+                                @if(ViewBag.Type == "Shoe" || ViewBag.Type == "Accessories")
+                                {
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                                <div class=" col-11 d-flex justify-content-between align-items-baseline">
 
 
-                                                <h5 class="m-0">Gender</h5>
-                                            </div>
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                                        <div class="accordion-body">
-                                            <div class="mt-3">
-                                                @if (ViewBag.Type != "Mens")
-                                                {
-                                                    
-                                                    @foreach (var checkbox in Model.Checkboxes)
+                                                    <h5 class="m-0">Gender</h5>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                                            <div class="accordion-body">
+                                                <div class="mt-3">
+                                                    @if (ViewBag.Type != "Mens")
                                                     {
-                                                        if (checkbox.Value == "M" || checkbox.Value == "W" || checkbox.Value == "U")
-                                                        {
-                                                            <ul>
-                                                                <input type="checkbox"
-                                                                       value="@checkbox.Value"
-                                                                       name="UniqueName"
-                                                                       id="checkbox_@checkbox.Value"
-                                                                       checked="@(Model.UniqueName != null && Model.UniqueName.Contains(checkbox.Value) ? true : false)" />
-                                                                <label for="checkbox_@checkbox.Value">
-                                                                    @checkbox.Description
-                                                                </label>
-                                                            </ul>
 
+                                                        @foreach (var checkbox in Model.Checkboxes)
+                                                        {
+                                                            if (checkbox.Value == "M" || checkbox.Value == "W" || checkbox.Value == "U")
+                                                            {
+                                                                <ul>
+                                                                    <input type="checkbox"
+                                                                           value="@checkbox.Value"
+                                                                           name="UniqueName"
+                                                                           id="checkbox_@checkbox.Value"
+                                                                           checked="@(Model.UniqueName != null && Model.UniqueName.Contains(checkbox.Value) ? true : false)" />
+                                                                    <label for="checkbox_@checkbox.Value">
+                                                                        @checkbox.Description
+                                                                    </label>
+                                                                </ul>
+
+                                                            }
                                                         }
                                                     }
-                                                }
 
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
+                                
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
@@ -193,10 +197,11 @@
                     @foreach (var product in Model.ProductModel)
                     {
                        
-                        var temp = product.CategoryId;
-                        bool temp2 = temp == 1;
-                        if (temp2 && productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Type == product.Type && productImage.variant == false)
+                        //var temp = product.CategoryId;
+                        //bool temp2 = temp == 1;
+                        if ( productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Type == product.Type && productImage.variant == false)
                         {
+                           
                             @if (product.Price < ViewBag.chosenMax && product.Price > ViewBag.chosenMin)
                             {
 
@@ -213,11 +218,14 @@
 
                                         if (item == product.Brand)
                                         {
-                                            uniqueproduct.Add(product.Id.ToString());
+                                            @foreach (var productImage2 in Model.ProductImagesModel)
+                                            {
+                                                if (productImage2.ProductId == product.Id)
+                                                    imageList.Add(productImage2.Image1.ToString());
+                                            }
                                             var json = JsonConvert.SerializeObject(imageList.ToArray());
                                             imageList.Clear();
-
-
+                                           
                                             <div class="product-card fit text  m-2 p-0 overflow-hidden">
 
                                                 <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
@@ -270,16 +278,27 @@
 
                                                     <h4 class="fs-5">@(product.Name)</h4>
 
-                                                    <h4 class="mb-0 fs-6">@(product.Brand) • @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h4>
+                                                    @if (ViewBag.Type == "Shoe")
+                                                    {
+                                                        <h4 class="mb-0 fs-6">@(product.Brand) • @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : (product.Sex == 'U') ? "Unisex" : " ") @(product.Type)</h4>
 
+                                                    }else{
+                                                        <h4 class="mb-0 fs-6">@(product.Brand) - @(product.Type)</h4>
+
+                                                    }
                                                 </a>
                                             </div>
                                         }
                                         if (item.Equals(product.Sex.ToString()) && !uniqueproduct.Contains(product.Id.ToString()))
                                         {
+                                            @foreach (var productImage2 in Model.ProductImagesModel)
+                                            {
+                                                if (productImage2.ProductId == product.Id)
+                                                    imageList.Add(productImage2.Image1.ToString());
+                                            }
                                             var json = JsonConvert.SerializeObject(imageList.ToArray());
                                             imageList.Clear();
-
+                                           
 
                                             <div class="product-card fit text  m-2 p-0 overflow-hidden">
 
@@ -333,8 +352,16 @@
 
                                                     <h4 class="fs-5">@(product.Name)</h4>
 
-                                                    <h4 class="mb-0 fs-6">@(product.Brand) • @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h4>
+                                                    @if (ViewBag.Type == "Shoe")
+                                                    {
+                                                        <h4 class="mb-0 fs-6">@(product.Brand) • @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : (product.Sex == 'U') ? "Unisex" : " ") @(product.Type)</h4>
 
+                                                    }
+                                                    else
+                                                    {
+                                                        <h4 class="mb-0 fs-6">@(product.Brand) - @(product.Type)</h4>
+
+                                                    }
                                                 </a>
                                             </div>
                                         }
@@ -351,7 +378,7 @@
                                     }
                                     var json = JsonConvert.SerializeObject(imageList.ToArray());
                                     imageList.Clear();
-
+                                   
 
                                     <div class="product-card fit text  m-2 p-0 overflow-hidden" >
 
@@ -404,8 +431,14 @@
                                             </div>
                                             
                                             <h4 class="fs-5">@(product.Name)</h4>
+                                            @if (ViewBag.Type == "Shoe")
+                                                    {
+                                                        <h4 class="mb-0 fs-6">@(product.Brand) • @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : (product.Sex == 'U') ? "Unisex" : " ") @(product.Type)</h4>
 
-                                            <h4 class="mb-0 fs-6">@(product.Brand) • @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h4>
+                                                    }else{
+                                                        <h4 class="mb-0 fs-6">@(product.Brand) - @(product.Type)</h4>
+
+                                                    }
 
                                         </a>
                                     </div>

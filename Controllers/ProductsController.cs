@@ -38,7 +38,34 @@ namespace Otello.Controllers
             return View(model);
                        
         }
+        public async Task<IActionResult> Grocery()
+        {
+            List<Product> products = new List<Product>();
+            products = db.Product.ToList();
+            List<ProductImages> productsImages = new List<ProductImages>();
+            productsImages = db.ProductImages.ToList();
 
+            ViewModel model = new ViewModel();
+            model.ProductModel = db.Product.ToList();
+            model.ProductImagesModel = db.ProductImages.ToList();
+
+            return View(model);
+
+        }
+        public async Task<IActionResult> Home()
+        {
+            List<Product> products = new List<Product>();
+            products = db.Product.ToList();
+            List<ProductImages> productsImages = new List<ProductImages>();
+            productsImages = db.ProductImages.ToList();
+
+            ViewModel model = new ViewModel();
+            model.ProductModel = db.Product.ToList();
+            model.ProductImagesModel = db.ProductImages.ToList();
+
+            return View(model);
+
+        }
         [HttpPost]
         [Route("/Products/Category/{type}")]
         public async Task<IActionResult> Category(string type, ViewModel model, int maxslider, int minslider)

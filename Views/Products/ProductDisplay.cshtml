@@ -44,9 +44,9 @@
 					{
 						@foreach (Product product in ViewBag.ProductModel)
 						{
-							var temp = product.CategoryId;
-							bool temp2 = temp == 1;
-							if (temp2 && productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id && ViewBag.colorId == productImage.colorId)
+							//var temp = product.CategoryId;
+							//bool temp2 = temp == 1;
+							if ( productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id && ViewBag.colorId == productImage.colorId)
 							{
 								<ul class="product-display-list plain-list d-flex flex-column align-items-end justify-content-start">
 									<li class="bg-dark">
@@ -93,9 +93,9 @@
 					{
 						@foreach (Product product in ViewBag.ProductModel)
 						{
-							var temp = product.CategoryId;
-							bool temp2 = temp == 1;
-							if (temp2 && productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id && ViewBag.ColorId == productImage.colorId)
+							//var temp = product.CategoryId;
+							//bool temp2 = temp == 1;
+							if( productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id && ViewBag.ColorId == productImage.colorId)
 							{
 								<div id="product-display-image" class=" magnifier-thumb-wrapper position-relative">
 									<img id="thumb" src="@(productImage.Image1)" alt="product image for " />
@@ -113,21 +113,29 @@
 					@foreach (Product product in ViewBag.ProductModel)
 					{
 
-						var temp = product.CategoryId;
-						bool temp2 = temp == 1;
+						//var temp = product.CategoryId;
+						//bool temp2 = temp == 1;
 
 
-						if (temp2 && productImage.ProductId == ViewBag.Id && productImage.Id > 0 && ViewBag.ColorId == productImage.colorId && product.Id == ViewBag.Id)
+						if ( productImage.ProductId == ViewBag.Id && productImage.Id > 0 && ViewBag.ColorId == productImage.colorId && product.Id == ViewBag.Id)
 						{
 							<h2 class="mb-0">@(product.Name) </h2>
-							<h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
-							<h4 class="mt-3">$@(product.Price) </h4>
+							if(product.Type == "Shoe")
+							{
+								<h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
+							}
+							else{
+															<h5 class=" "> @(product.Type)</h5>
+
+								
+							}
+						<h4 class="mt-3">$@(product.Price) </h4>
 							var stock = (product.Stock > 30) ? "text-success" : (product.Stock > 15) ? "text-warning" : "text-danger";
 							<h6 class="mt-3"><span class="@(stock)">@(product.Stock) left in stock</span></h6>
 
 
 
-							<h5 class="mt-4">Select a Style:</h5>
+							<h5 class="mt-4">Select a @(product.Type == "Frozen" || product.Type == "Condiments" || product.Type == "Snacks" || product.Type == "Produce" ? "flavor" : "style"):</h5>
 							<ul class="color-list">
 								@foreach (ProductVariations productVariation in ViewBag.Pe)
 								{
@@ -507,9 +515,9 @@
 				{
 					@foreach (Product product in ViewBag.ProductModel)
 					{
-						var temp = product.CategoryId;
-						bool temp2 = temp == 1;
-						if (temp2 && productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id)
+						//var temp = product.CategoryId;
+						//bool temp2 = temp == 1;
+						if ( productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id)
 						{
 							<h2 class="mb-0">@(product.Name) </h2>
 							<h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)s</h5>

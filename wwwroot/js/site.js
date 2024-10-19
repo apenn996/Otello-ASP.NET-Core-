@@ -31,7 +31,7 @@ function cycleVariants(el, test) {
             }
             el.src = test[i].toString();
             i++;
-        }, 300);
+        }, 400);
 
     
 }
@@ -77,14 +77,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function leftScroll() {
         scrollImages.scrollBy({
-            left: -300,
+            left: -500,
             behavior: "smooth"
         });
     }
 
     function rightScroll() {
         scrollImages.scrollBy({
-            left: 300,
+            left: 500,
             behavior: "smooth"
         });
     }

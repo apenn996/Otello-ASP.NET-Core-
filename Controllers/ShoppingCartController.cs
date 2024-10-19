@@ -40,7 +40,7 @@ namespace Otello.Controllers
        
         
         [Authorize]
-        public async Task<IActionResult> AddToCart(int cartItemId, int quantity, int variationId, long totalCost, int cId, int sId, int vId)
+        public async Task<IActionResult> AddToCart(int cartItemId, int quantity, int variationId, double totalCost, int cId, int sId, int vId)
         {
            
             var userId = User.Identity?.Name;

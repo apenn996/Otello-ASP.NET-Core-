@@ -159,6 +159,7 @@ body {
     }
     .product-circle a {
         text-decoration: none;
+           width: 100%;
     }
     .product-circle a h5{
        padding-top: 20px
@@ -333,8 +334,8 @@ body {
     height: fit-content;
 }
 .cart-image{
-    height: auto;
-    max-height: 250px;
+    height: 210px;
+    
     object-fit: cover;
     width: 100%;
     display:block;

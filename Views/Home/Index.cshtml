@@ -32,11 +32,13 @@
                 <img class="thumbnail-images" src="/assets/thumbnails/back-to-school.jpg" />
             </div>
             <div class="deals-grid-item justify-content-center align-items-center" style="grid-column: 2 / span 2; grid-row: 3 / span 1; ">
-                <div class="thumbnail-header text-center mb-5"> 
+                <a class="fill position-relative d-flex justify-content-center align-items-center" asp-controller="Products" asp-action="Home" >
+                <div class="thumbnail-header text-center mb-5 text-black"> 
                     <h2 class="fw-bold">Seasons Greetings</h2>
                     <h6>Welcome fall with our colletion of fall themed decorations.</h6>
                 </div>
                 <img class="thumbnail-images" src="/assets/thumbnails/fall.jpeg" />
+                </a>
             </div>
             <div class="deals-grid-item" style="grid-column: 1 / span 1; grid-row: 2 / span 2; ">
                 <a class="fill position-relative" asp-controller="Products" asp-action="Apparel" >
@@ -48,19 +50,20 @@
                 <img class="thumbnail-images" src="/assets/thumbnails/fashion.jpg" />
                 </a>
             </div>
-            <div class="deals-grid-item" style="grid-column: 4 / span 1; grid-row: 2 / span 2; ">
+            <div class="deals-grid-item" style="grid-column: 4 / span 1; grid-row: 2 / span 2; cursor: not-allowed  ">
                 
                     <img class="thumbnail-images" src="/assets/thumbnails/outdoors.jpeg" />
 
             </div>
             <div class="deals-grid-item ">
+                 <a class="fill position-relative" asp-controller="Products" asp-action="Grocery" >
                 <div class="thumbnail-header text-start mb-5 col-6 ">
                     <h2 class="fw-light">Freshness Delivered: From Farm to Your Doorstep</h2>
                     
                 </div>
                 <img class="thumbnail-images" src="/assets/thumbnails/produce.jpeg" />
 
-
+                </a>
             </div>
              
            

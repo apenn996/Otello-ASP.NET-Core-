@@ -6,9 +6,9 @@
         public string UserId { get; set; }
         public int Quantity { get; set; }
         public int VariationId { get; set; }
-        public long TotalCost { get; set; }
+        public double TotalCost { get; set; }
 
-        public ShoppingCart(string userId, int quantity, int variationId, long totalCost)
+        public ShoppingCart(string userId, int quantity, int variationId, double totalCost)
         {
             this.UserId = userId;
             this.Quantity = quantity;

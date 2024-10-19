@@ -11,10 +11,10 @@ namespace Otello.Models
         public List<ProductReviews> ProductReviewsModel { get; set; }
 
         public List<CheckboxOptions> Checkboxes = new List<CheckboxOptions>();
-        public readonly int MaxPrice = 300;
-        public int chosenMax { get; set; } = 300;
-        public int chosenMin { get; set; } = 1;
-        public readonly int MinPrice = 1;
+        public readonly double MaxPrice = 300;
+        public double chosenMax { get; set; } = 300;
+        public double chosenMin { get; set; } = 0;
+        public readonly double MinPrice = 0;
         public List<string> UniqueName { get; set; }
     }
 }
