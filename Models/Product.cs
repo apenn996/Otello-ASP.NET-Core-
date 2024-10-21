@@ -18,6 +18,6 @@ namespace Otello.Models
         public string Type { get; set; }
         public char Sex { get; set; }
 
-        
+        public string? Grouping { get; set; }
     }
 }

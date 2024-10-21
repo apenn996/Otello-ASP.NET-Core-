@@ -2,28 +2,82 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <nav id="secondary-nav" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
+    
     <div class="container-fluid col-12 col-md-11">
       
         <div class="navbar-collapse collapse d-sm-inline-flex ">
             <ul class=" navbar-nav flex-grow-1 justify-content-end align-items-center">
               
-                <li class="nav-item">
+               @* <li class="nav-item">
                     <a class=" mynav-link" asp-controller="Products" asp-action="Index">
                         Electronics
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class=" mynav-link" asp-controller="Products" asp-action="Apparel">
+                </li>*@
+                <li class="dropdown secondary-navlink-container">
+                    <a class=" btn text-light dropdown-toggle" asp-controller="Products" asp-action="Apparel" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
                         Apparel
-                    </a> 
-                </li>
-                <li class="nav-item">
-                    <a class=" mynav-link" asp-controller="Products" asp-action="Grocery">
-                        Grocery
                     </a>
+                    <ul class="navlink-dropdown dropdown-menu text-dark" id="apparelMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        <li class=" col-12">
+                            @*<a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Womens">
+                                Women's
+                            </a>*@
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Mens">
+                                Men's
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Shoe">
+                                Shoes
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Accessories">
+                                Accessories
+                            </a>
+                        </li>
+                       
+                    </ul>
                 </li>
-                <li class="nav-item">
+               
+                <li class="dropdown secondary-navlink-container">
+                    <a class=" btn text-light dropdown-toggle" asp-controller="Products" asp-action="Grocery"    aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                            Grocery
+                        </a>
+                    <ul class="navlink-dropdown dropdown-menu text-dark"  id="groceryMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                            <li class=" col-12">
+                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Produce">
+                                    Produce
+                                </a>
+                            </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Pets">
+                               Pets
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Snacks">
+                                Snacks
+                            </a>
+                        </li>
+                       <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Frozen">
+                                Frozen
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Condiments">
+                                Condiments
+                            </a>
+                        </li>
+                        </ul>                                                                             
+                </li>
+
+                @*<li class="nav-item">
                     <a class=" mynav-link" asp-controller="Products" asp-action="Index">
                         Entertainment
                     </a>
@@ -32,7 +86,7 @@
                     <a class=" mynav-link" asp-controller="Products" asp-action="Index">
                         Outdoors
                     </a>
-                </li>
+                </li>*@
                </ul>
             
         </div>

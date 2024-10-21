@@ -12,6 +12,34 @@ function displayImage(el) {
     
 }
 
+function showdropdown(menu) {
+    menu.classList.add("show");
+    if (menu.id) {
+        menu.classList.add("show");
+    } else {
+        realmenu = menu.parentNode.querySelector(".dropdown-menu");
+        realmenu.classList.add("show");
+    }
+    
+    var overlay = document.getElementById("dropdown-overlay");
+    //overlay.style.visibility = "visible";
+    overlay.classList.add("overlay-anim");
+}
+
+function removedropdown(menu) {
+    menu.classList.remove("show");
+    if (menu.id) {
+        menu.classList.remove("show");
+    } else {
+        var realmenu = menu.parentNode.querySelector(".dropdown-menu");
+        console.log(realmenu);
+        realmenu.classList.remove("show");
+    }
+   
+    var overlay = document.getElementById("dropdown-overlay");
+   // overlay.style.visibility = "hidden";
+    overlay.classList.remove("overlay-anim");
+}
 function updateReview(){
     document.getElementById('yourMessage').style.display = 'none';
     document.getElementById('updateEnterDiv').style.display = 'flex';
@@ -45,22 +73,26 @@ function stopCycle(el, test) {
 
 
 /* ARROW SCROLLER */
-document.addEventListener("DOMContentLoaded", function () {
-    const scrollImages = document.querySelector(".scroll-images");
-    const scrollLength = scrollImages.scrollWidth - scrollImages.clientWidth;
-    const leftButton = document.querySelector(".left");
-    const rightButton = document.querySelector(".right");
 
-    function checkScroll() {
-        const currentScroll = scrollImages.scrollLeft;
+
+var elements = document.getElementsByClassName("scroll-images");
+var leftButton;
+var rightButton;
+var myFunc = function () {
+   
+    var currentScroll = this.scrollLeft;
+    console.log(currentScroll);
+    console.log(this.scrollWidth - this.clientWidth);
+    leftButton = this.parentNode.querySelector(".left");
+    rightButton = this.parentNode.querySelector(".right");
         if (currentScroll === 0) {
             leftButton.setAttribute("disabled", "true");
             leftButton.style.visibility = "hidden";
             rightButton.removeAttribute("disabled");
-        } else if (currentScroll >= scrollLength) {
+        } else if (currentScroll + 3 >= this.scrollWidth - this.clientWidth) {
             rightButton.setAttribute("disabled", "true");
             leftButton.removeAttribute("disabled");
-          
+
             rightButton.style.visibility = "hidden";
         } else {
             leftButton.removeAttribute("disabled");
@@ -69,30 +101,38 @@ document.addEventListener("DOMContentLoaded", function () {
             rightButton.style.visibility = "visible";
 
         }
-    }
+    
+}
+for (var i = 0; i < elements.length; i++) {
+    
+    
+    elements[i].addEventListener('scroll', myFunc, false);
+   
+    myFunc.call(elements[i]);
+}
 
-    scrollImages.addEventListener("scroll", checkScroll);
-    window.addEventListener("resize", checkScroll);
-    checkScroll();
+function leftScroll(el) {
 
-    function leftScroll() {
-        scrollImages.scrollBy({
-            left: -500,
-            behavior: "smooth"
-        });
-    }
+    
 
-    function rightScroll() {
-        scrollImages.scrollBy({
-            left: 500,
-            behavior: "smooth"
-        });
-    }
+    var temp = el.parentNode;
+    var real = temp.querySelector(".scroll-images");
+    real.scrollBy({
+        left: -500,
+        behavior: "smooth"
+    });
 
-    leftButton.addEventListener("click", leftScroll);
-    rightButton.addEventListener("click", rightScroll);
-});
+}
 
+function rightScroll(el) {
+    var temp = el.parentNode;
+    var real = temp.querySelector(".scroll-images");
+    real.scrollBy({
+        left: 500,
+        behavior: "smooth"
+    });
+
+}
 
 
 
@@ -298,7 +338,7 @@ var Magnifier = function (evt, options) {
                 yPos = pos.y - curData.y,
                 t = 0,
                 l = 0;
-
+           
             inBounds = (
                 xPos < 0 ||
                 yPos < 0 ||
@@ -396,6 +436,7 @@ var Magnifier = function (evt, options) {
             }
         },
         onThumbEnter = function () {
+            document.body.style.cursor = "none";
             curData = data[curIdx];
             curLens = $('#' + curIdx + '-lens');
 
@@ -423,6 +464,7 @@ var Magnifier = function (evt, options) {
             }
         },
         onThumbLeave = function () {
+             document.body.style.cursor = "auto";
             if (curData.status > 0) {
                 var handler = curData.onthumbleave;
 
@@ -463,7 +505,7 @@ var Magnifier = function (evt, options) {
                     curLarge.style.top = '-' + curData.largeT + 'px';
                 }
 
-                curLens.style.left = pos.l + 'px';
+                curLens.style.left = pos.l + 'px'; // change for lens position
                 curLens.style.top = pos.t + 'px';
                 curLens.style.backgroundPosition = '-' +
                     curData.lensBgX + 'px -' +
