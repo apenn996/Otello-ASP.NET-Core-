@@ -63,11 +63,11 @@ double CartPrice = 0;
 															}
 															<h6 class="@stock">@(product.Stock) left in stock</h6>
 															<h5><span class="fw-bold">Brand:</span> @(product.Brand)</h5>
-															<h5><span class="fw-bold">Item:</span> @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
+															<h5><span class="fw-bold">Item:</span> @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : (product.Sex == 'U') ? "Unisex" : "") @(product.Type) @((product.Grouping != null) ? " - " + product.Grouping : "")</h5>
 															<h5><span class="fw-bold">Style:</span>  @(color.Color) - <span class="fw-bold">Size:</span> @(size.Size)</h5>
-															<div style="bottom: 0px;" class="position-absolute ">
-																<a asp-action="Edit" asp-route-id="@shoppingCart.Id">Edit</a> |
-																@*<a asp-action="Details" asp-route-id="@shoppingCart.Id">Details</a> | *@
+															<div  class="position-absolute ">
+																@*<a asp-action="Edit" asp-route-id="@shoppingCart.Id">Edit</a> |
+																<a asp-action="Details" asp-route-id="@shoppingCart.Id">Details</a> | *@
 																<a asp-action="Delete" asp-route-id="@shoppingCart.Id" asp-route-pId="@product.Id">Delete</a>
 															</div>
 
@@ -99,8 +99,8 @@ double CartPrice = 0;
 			<div class="cart-summary col-4">
 				<div style="background-color: #f6f6f6;" class=" p-4 ">
 					<h2 class="mb-3">Your Summary</h2>
-					<h5>Number of items: @(cartLength)</h5>
-					<h5 class="">Subtotal: $@CartPrice</h5>
+					<h5>Number of items: @(cartLength)</h5>					
+					<h5 class="">Subtotal: $@(CartPrice = Math.Truncate(100 * CartPrice) / 100)</h5>
 					<button type="button" class="btn checkout-button mt-4" onclick="">
 						<h5 class="text-black fs-6 m-0">Proceed to checkout</h5>
 					</button>

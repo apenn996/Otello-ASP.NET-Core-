@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Otello</title>
+    <link rel="icon" href="~/assets/Otello-logo.ico"/>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Otello.styles.css" asp-append-version="true" />
@@ -26,12 +27,27 @@
             @RenderBody()
         </main>
     </div>
+    <footer id="myfooter" class="border-top footer text-muted text-light d-flex flex-direction-column">
+        <div class="container position-relative d-flex justify-content-center" style="width: fit-content;">
+            <div class="text-light me-5" >
+                <h4>My other websites:</h4>
+                
+                <h6 class=" "><a class="text-light" href="https://austinpennartz.net">My Portfolio</a></h6>
+                <h6 class=" "><a class="text-light" href="https://binge-ify.netlify.app">Binge-ify</a> - A React.js site</h6>
+                <h6 class=" "><a class="text-light" href="https://austinpennartz.net/HotelWebsite">Travelonics</a> - A LEMP app.</h6>
+            </div>
+            <div class="text-light me-5">
+                <h4>Find me on:</h4>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Otello - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <h6 class=" "><a class="text-light" href="https://github.com/apenn996">Github</a></h6>
+                
+            </div>
+            <h6 style="bottom: 0px; position: absolute;"class=" text-light">Made by Austin Pennartz</h6>
+           
         </div>
+       
     </footer>
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -49,4 +65,5 @@
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

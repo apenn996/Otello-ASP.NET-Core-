@@ -7,7 +7,7 @@
     List<string> imageList = new List<string>();
 }
 
-<div id="scroll-wrapper" class="container-fluid col-10 pt-5">
+<div id="scroll-wrapper" class="container-fluid col-9 pt-5">
     <div class="row justify-content-center " >
         <div class="deals-grid">
             <div class="deals-grid-item not-allowed">
@@ -17,12 +17,14 @@
                 </div>
                 <img class="thumbnail-images" src="/assets/thumbnails/tech2.jpg" />
             </div>
-            <div class="deals-grid-item not-allowed" style="grid-column: 2 ; grid-row: 1 / span 2; ">
+            <div class="deals-grid-item " style="grid-column: 2 ; grid-row: 1 / span 2; ">
+                <a class="fill position-relative text-decoration-none text-dark" asp-controller="Products" asp-action="Category" asp-route-type="Halloween" >
                 <div class="thumbnail-header text-center mt-5" style="">
                     <h1 class="fw-bold">For the Halloween prepper</h1>  
                     
               </div>
                 <img class="thumbnail-images" src="/assets/thumbnails/halloween2.jpg" />    
+                </a>
             </div> 
             <div class="deals-grid-item not-allowed" style="grid-column: 3 / span 2; grid-row: 1 / span 1; ">
               <div class="thumbnail-header mt-5">
@@ -109,7 +111,7 @@
                             if (product.Grouping == "Gameday")
                             {
                                 uniqueproduct.Add(product.Id.ToString());
-                                <li class="me-3">
+                                <li class="me-3" style="min-width: 200px; max-width: 200px;">
                                     <div class=" text  m-2 p-0 overflow-hidden">
 
                                         <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
@@ -123,7 +125,7 @@
                                             <h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
                                             }
                                             else{
-                                                <h5 class=" "> @(product.Brand) • @(product.Type)</h5>
+                                                <h6 class=" "> @(product.Brand) • @(product.Type)</h6>
 
 
                                             }
@@ -154,7 +156,7 @@
     </div>
 
     <div class="row mt-5 ">
-        <h1 class="my-pad">Stay Healthy</h1>
+        <h1 class="my-pad">Fruits & Veggies</h1>
         <div class="cover ">
             <button class="left" onclick="leftScroll(this)">
                 <div style="height: 50px; width: 50px; border-radius: 100%;  border: 1px solid black;" class="dim d-flex justify-content-center align-items-center m-0 p-0">
@@ -178,7 +180,7 @@
                             if (product.Grouping == "Fruit" || product.Grouping == "Veggie")
                             {
                                 uniqueproduct.Add(product.Id.ToString());
-                                <li class="me-3">
+                                <li class="me-3" style="min-width: 200px; max-width: 200px;">
                                     <div class=" text  m-2 p-0 overflow-hidden">
 
                                         <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
@@ -192,7 +194,7 @@
                                             <h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
                                             }
                                             else{
-                                                <h5 class=" "> @(product.Brand) • @(product.Type)</h5>
+                                                <h6 class=" "> @(product.Brand) • @(product.Type)</h6>
 
 
                                             }

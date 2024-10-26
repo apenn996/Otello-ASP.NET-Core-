@@ -10,14 +10,14 @@ html {
 
 
 html {
-  position: relative;
+  
   min-height: 100%;
 }
 a{
    
 }
 body {
-  margin-bottom: 60px;
+ 
 
 }
 
@@ -120,9 +120,9 @@ body {
     color: black !important;
     display: block;
     min-width: 100%;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
     text-decoration: none !important;
-    border-radius: 10px;
+    border-radius: 0px;
 
 }
 .secondary-list-item:hover {
@@ -132,7 +132,7 @@ body {
 }
 #avatar-img{
     height: 20px;
-    margin: 5px;
+    margin-right: 5px;
 }
 
 #secondary-nav{
@@ -148,7 +148,18 @@ body {
         color: white;
         text-decoration: underline;
 }
-
+.secondary-dropdown {
+    padding: 15px 0px 15px 0px;
+    font-size: 17px;
+    
+}
+#myfooter{
+    margin-top: 150px;
+    position: relative;
+    min-height: 350px;
+    background-color: #4f734b;
+    padding: 50px
+}
 .fit{
     width:fit-content;
 }
@@ -282,7 +293,7 @@ body {
     }
 
 .horizontal-product-list {
-    width: 100%;
+    width: 200px;
     height: 100%;
     overflow: hidden;
     overflow-x: auto;
@@ -290,8 +301,8 @@ body {
 }
 
 .horizontal-product-list-image {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    
     border-radius: 15px;
     object-fit: cover;
 }
@@ -374,7 +385,7 @@ body {
 .cart-image{
     height: 210px;
     
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     display:block;
 }
