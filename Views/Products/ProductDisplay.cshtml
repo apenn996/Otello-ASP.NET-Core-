@@ -3,7 +3,7 @@
 @inject UserManager<IdentityUser> UserManager
 @{
 	ViewData["Title"] = ViewBag.Id;
-	var myAlert = ViewData["alert"];
+	
 	List<int> colorList = new List<int>();
 	List<int> vList = new List<int>();
 	List<int> sizeList = new List<int>();
@@ -13,26 +13,27 @@
 	// List<ProductImages> ProductImages = ViewData["productImages"] as List<ProductImages>;
 	// List<Product> Product = ViewData["product"] as List<Product>;
 }
-<script type="text/javascript">
 
-	var test = '@ViewData["Alert"]';
-	console.log(test);
-	window.onload = function () {
-		if (test != null && test != "") {
-			if (test) {
-				alert("This product has been successfully added to your cart!");
-			} else {
-				alert("There was an error processing your request.");
-
-			}
-		}
-	}
-</script>
 
 <br />
 <br />
 <br />
-
+<h1>@ViewBag.TestAlert</h1>
+@if(ViewBag.TestAlert == "false")
+{
+	<h1>false</h1>
+}
+@if(ViewBag.TestAlert == "True" )
+{
+	<!-- Button trigger modal -->
+	<div class="col-12 d-flex justify-content-center align-items-center position-fixed " style="z-index: 8; bottom: 50%; right: 50%;">
+		<div class="alert alert-success alert-dismissible fade show  cart-alert" role="alert">
+			This item has been successfully added to <a class="alert-link" asp-controller="ShoppingCart" asp-action="Index">your cart</a>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	</div>
+	
+}
 <div class="col-12 d-flex justify-content-center">
 	<div class="container-fluid col-xl-11  m-0 d-flex flex-column align-items-center">
 		<div style="max-width: 1400px; " class="row col-12 ">
@@ -198,6 +199,36 @@
 									}
 								}
 							</ul>
+
+
+							
+
+							
+							
+							<select name="selectTest" class="col-12" id="cars">
+
+								@for (int i= 1; i <= 10; i++){
+												
+									
+
+									<!-- Works in Razor views -->
+									<!option value="@i" >
+										@i
+									</!option>
+
+									
+								}
+								
+								</select>
+						
+								@*<script type="text/javascript">
+									 var select = document.getElementById("cars");
+
+									 for (i = 1; i <= @product.Stock; i++) {
+										 select.innerHTML += '<option>' + i + '</option>';
+									 }
+				</script>*@
+							
 							<h5 class="mt-4">Select a Size:</h5>
 							<ul class="size-list">
 								@foreach (ProductVariations productVariation in ViewBag.Pe)
@@ -233,6 +264,8 @@
 								}
 
 							</ul>
+							
+							
 							<h6 class="mt-4">Shipping</h6>
 							<p>View our shipping options at checkout.</p>
 							@foreach (ProductVariations productVariation in ViewBag.Pe)

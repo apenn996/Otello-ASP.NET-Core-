@@ -711,7 +711,11 @@ button {
 
 }
 
-
+.cart-alert{
+    position: absolute;
+    width: auto;
+    z-index: 8;
+}
 
 
 

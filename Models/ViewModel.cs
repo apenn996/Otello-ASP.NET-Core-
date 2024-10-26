@@ -12,9 +12,11 @@ namespace Otello.Models
 
         public List<CheckboxOptions> Checkboxes = new List<CheckboxOptions>();
         public readonly double MaxPrice = 300;
-        public double chosenMax { get; set; } = 300;
-        public double chosenMin { get; set; } = 0;
+        public double chosenMax { get; set; } = 300f;
+        public double chosenMin { get; set; } = 0f;
         public readonly double MinPrice = 0;
         public List<string> UniqueName { get; set; }
+
+       
     }
 }

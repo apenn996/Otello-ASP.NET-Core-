@@ -74,6 +74,7 @@ namespace Otello.Controllers
             System.Diagnostics.Debug.WriteLine(model.Checkboxes);
             System.Diagnostics.Debug.WriteLine(type);
             ViewBag.Type = type;
+            
             System.Diagnostics.Debug.WriteLine(maxslider);
             List<Product> products = new List<Product>();
             List<ProductImages> productsImages = new List<ProductImages>();
@@ -91,33 +92,90 @@ namespace Otello.Controllers
            
             List<string> brands = new List<string>();
             brands.Clear();
-           
-            model.Checkboxes = new List<CheckboxOptions>();
-              
-                foreach(var item in products) 
-                {
-                    if(item.Type == type && !brands.Contains(item.Brand))
-                    {
-                        brands.Add(item.Brand);
 
-                        model.Checkboxes.Add(
-                       new CheckboxOptions()
+            List<string> groupings = new List<string>();
+            groupings.Clear();
+            model.Checkboxes = new List<CheckboxOptions>();
+
+            foreach (var item in products)
+            {
+                if (item.Type == type && !brands.Contains(item.Brand))
+                {
+                    brands.Add(item.Brand);
+
+                    model.Checkboxes.Add(
+                   new CheckboxOptions()
+                   {
+                       IsChecked = false,
+                       Description = item.Brand,
+                       Value = item.Brand,
+                       Type = "Brands"
+                   }
+                   );
+                }
+                if (brands.Count == 0)
+                {
+                    foreach (var item2 in products)
+                        if (item2.Grouping == type && !brands.Contains(item2.Brand))
+                        {
+                            brands.Add(item2.Brand);
+
+                            model.Checkboxes.Add(
+                           new CheckboxOptions()
                            {
                                IsChecked = false,
-                               Description = item.Brand,
-                               Value = item.Brand
+                               Description = item2.Brand,
+                               Value = item2.Brand,
+                               Type = "Brands"
                            }
-                       );
-                    }
-                   
-                   
+                           );
+                        }
                 }
+
+            }
+            foreach (var item in products)
+            {
+                if (item.Type == type && !groupings.Contains(item.Grouping))
+                {
+                    groupings.Add(item.Grouping);
+
+                    model.Checkboxes.Add(
+                   new CheckboxOptions()
+                   {
+                       IsChecked = false,
+                       Description = item.Grouping,
+                       Value = item.Grouping,
+                       Type = "Groupings"
+                   }
+                   );
+                }
+                if (groupings.Count == 0)
+                {
+                    foreach (var item2 in products)
+                        if (item2.Grouping == type && !groupings.Contains(item2.Grouping))
+                        {
+                            groupings.Add(item2.Grouping);
+
+                            model.Checkboxes.Add(
+                           new CheckboxOptions()
+                           {
+                               IsChecked = false,
+                               Description = item2.Grouping,
+                               Value = item2.Grouping,
+                               Type = "Groupings"
+                           }
+                           );
+                        }
+                }
+
+            }
             model.Checkboxes.Add(
                    new CheckboxOptions()
                    {
                        IsChecked = false,
                        Description = "Men's",
-                       Value = "M"
+                       Value = "M",
+                       Type="Gender"
                       
                    }
                    );
@@ -126,7 +184,8 @@ namespace Otello.Controllers
                   {
                       IsChecked = false,
                       Description = "Women's",
-                      Value = "W"
+                      Value = "W",
+                      Type = "Gender"
 
                   }
                   );
@@ -135,7 +194,8 @@ namespace Otello.Controllers
                   {
                       IsChecked = false,
                       Description = "Unisex",
-                      Value = "U"
+                      Value = "U",
+                      Type = "Gender"
 
                   }
                   );
@@ -162,12 +222,17 @@ namespace Otello.Controllers
 
             List<string> brands = new List<string>();
             brands.Clear();
+
+
+            List<string> groupings = new List<string>();
+            groupings.Clear();
             productsImages = db.ProductImages.ToList();
             //System.Diagnostics.Debug.WriteLine("IN C2 THE BRAND LIST I: " + brandList.UniqueName.Count);
             if (brandList == null)  
             {
                 
                 ViewModel model = new ViewModel();
+                
                 ViewBag.chosenMax = model.MaxPrice;
                 ViewBag.chosenMin = model.MinPrice;
                 model.ProductModel = db.Product.ToList();
@@ -186,18 +251,74 @@ namespace Otello.Controllers
                            {
                                IsChecked = false,
                                Description = item.Brand,
-                               Value = item.Brand
-                           }
+                               Value = item.Brand,
+                                Type = "Brands"
+                       }
                        );
                     }
+                    if(brands.Count == 0)
+                    {
+                        foreach(var item2 in products)
+                        if (item2.Grouping == type && !brands.Contains(item2.Brand))
+                        {
+                            brands.Add(item2.Brand);
+
+                            model.Checkboxes.Add(
+                           new CheckboxOptions()
+                           {
+                               IsChecked = false,
+                               Description = item2.Brand,
+                               Value = item2.Brand,
+                               Type = "Brands"
+                           }
+                           );
+                        }
+                    }
                    
+                }
+                foreach (var item in products)
+                {
+                    if (item.Type == type && !groupings.Contains(item.Grouping))
+                    {
+                        groupings.Add(item.Grouping);
+
+                        model.Checkboxes.Add(
+                       new CheckboxOptions()
+                       {
+                           IsChecked = false,
+                           Description = item.Grouping,
+                           Value = item.Grouping,
+                           Type = "Groupings"
+                       }
+                       );
+                    }
+                    if (groupings.Count == 0)
+                    {
+                        foreach (var item2 in products)
+                            if (item2.Grouping == type && !groupings.Contains(item2.Grouping))
+                        {
+                            groupings.Add(item2.Grouping);
+
+                            model.Checkboxes.Add(
+                           new CheckboxOptions()
+                           {
+                               IsChecked = false,
+                               Description = item2.Grouping,
+                               Value = item2.Grouping,
+                               Type = "Groupings"
+                           }
+                           );
+                        }
+                    }
+
                 }
                 model.Checkboxes.Add(
                    new CheckboxOptions()
                    {
                        IsChecked = false,
                        Description = "Men's",
-                       Value = "M"
+                       Value = "M",
+                       Type = "Gender"
 
                    }
                    );
@@ -206,7 +327,8 @@ namespace Otello.Controllers
                       {
                           IsChecked = false,
                           Description = "Women's",
-                          Value = "W"
+                          Value = "W",
+                          Type = "Gender"
 
                       }
                       );
@@ -215,7 +337,8 @@ namespace Otello.Controllers
                       {
                           IsChecked = false,
                           Description = "Unisex",
-                          Value = "U"
+                          Value = "U",
+                          Type = "Gender"
 
                       }
                       );
@@ -249,6 +372,7 @@ namespace Otello.Controllers
             {
 				ViewBag.SizeId = sizeId;
 			}
+            ViewBag.TestAlert = TempData["success"];
 
 			ViewBag.ColorId = colorId;
             oldColor = colorId;
@@ -290,15 +414,18 @@ namespace Otello.Controllers
 			return
                 View();
         }
-        public async Task<IActionResult> onSubmit(int id, int c2Id, int s2Id, int v2Id, bool dbOperationSuccess)
+        public async Task<IActionResult> onSubmit(int id, int c2Id, int s2Id, int v2Id, string success)
         {
-			System.Diagnostics.Debug.WriteLine("2" + id + c2Id + s2Id + v2Id);
+			//System.Diagnostics.Debug.WriteLine("2" + id + c2Id + s2Id + v2Id);
 			int send = id;
             //for view data
             //ViewData["productImages"] = db.ProductImages.ToList();
             //ViewData["product"] = db.Product.ToList();
-            ViewData["Alert"] = dbOperationSuccess;
-            ViewBag.Id = id;
+          
+            
+			System.Diagnostics.Debug.WriteLine("\n VIEWBAG SUCCESS IS : " + success + "\n");
+            TempData["success"] = success;
+			ViewBag.Id = id;
 			ViewBag.Pe = db.ProductVariations.ToList();
 			ViewBag.ProductColorsModel = db.ProductColors.ToList();
 
