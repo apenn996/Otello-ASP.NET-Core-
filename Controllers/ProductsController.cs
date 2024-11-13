@@ -74,7 +74,7 @@ namespace Otello.Controllers
             System.Diagnostics.Debug.WriteLine(model.Checkboxes);
             System.Diagnostics.Debug.WriteLine(type);
             ViewBag.Type = type;
-            
+            ViewBag.bothGenders = "false";
             System.Diagnostics.Debug.WriteLine(maxslider);
             List<Product> products = new List<Product>();
             List<ProductImages> productsImages = new List<ProductImages>();
@@ -96,11 +96,12 @@ namespace Otello.Controllers
             List<string> groupings = new List<string>();
             groupings.Clear();
             model.Checkboxes = new List<CheckboxOptions>();
-
+          
             foreach (var item in products)
             {
                 if (item.Type == type && !brands.Contains(item.Brand))
                 {
+                    
                     brands.Add(item.Brand);
 
                     model.Checkboxes.Add(
@@ -118,6 +119,7 @@ namespace Otello.Controllers
                     foreach (var item2 in products)
                         if (item2.Grouping == type && !brands.Contains(item2.Brand))
                         {
+                           
                             brands.Add(item2.Brand);
 
                             model.Checkboxes.Add(
@@ -137,6 +139,7 @@ namespace Otello.Controllers
             {
                 if (item.Type == type && !groupings.Contains(item.Grouping))
                 {
+                    
                     groupings.Add(item.Grouping);
 
                     model.Checkboxes.Add(
@@ -211,7 +214,7 @@ namespace Otello.Controllers
         [Route("/Products/Category/{type}")]
         public async Task<IActionResult> Category(string type)
         {
-            
+            ViewBag.bothGenders = "false";
             System.Diagnostics.Debug.WriteLine("c2 --------------------------------");
             ViewBag.Type = type;
             
@@ -244,6 +247,7 @@ namespace Otello.Controllers
                 {
                     if(item.Type == type && !brands.Contains(item.Brand))
                     {
+                        
                         brands.Add(item.Brand);
 
                         model.Checkboxes.Add(
@@ -261,7 +265,8 @@ namespace Otello.Controllers
                         foreach(var item2 in products)
                         if (item2.Grouping == type && !brands.Contains(item2.Brand))
                         {
-                            brands.Add(item2.Brand);
+                                
+                                brands.Add(item2.Brand);
 
                             model.Checkboxes.Add(
                            new CheckboxOptions()
@@ -280,6 +285,7 @@ namespace Otello.Controllers
                 {
                     if (item.Type == type && !groupings.Contains(item.Grouping))
                     {
+                       
                         groupings.Add(item.Grouping);
 
                         model.Checkboxes.Add(
@@ -359,10 +365,10 @@ namespace Otello.Controllers
         }
         
         [Route("/Products/ProductDisplay/{id}+{colorId}+{sizeId}+{variationId}")]
-		public async Task<IActionResult> ProductDisplay(int id, int colorId, int sizeId, int variationId)
+		public async Task<IActionResult> ProductDisplay(int id, int colorId, int sizeId, int variationId, int quantity)
 		{
 			var temp = db.ProductVariations.FirstOrDefault(s => s.productId == id && s.colorId ==  colorId);
-			System.Diagnostics.Debug.WriteLine("test: " + colorId + oldColor);
+			System.Diagnostics.Debug.WriteLine("THIS IS A TEST OF CHANGE THE PRODUCT DISPLAY: " + quantity);
 			if (colorId != oldColor)
             {
 				System.Diagnostics.Debug.WriteLine("yup");
@@ -379,7 +385,8 @@ namespace Otello.Controllers
 			ViewBag.Id = id;
             System.Diagnostics.Debug.WriteLine("1" + id +  colorId +  sizeId +  variationId);
 			ViewBag.vId = variationId;
-
+            ViewBag.Quantity = quantity;
+			
 			ViewBag.ProductReviewsModel = db.ProductReviews.ToList();
 			ViewBag.ProductSizesModel = db.ProductSizes.ToList();
 			ViewBag.ProductColorsModel = db.ProductColors.ToList();
@@ -405,6 +412,8 @@ namespace Otello.Controllers
             ViewBag.ColorId = temp.colorId;
             oldColor = temp.colorId;
             ViewBag.SizeId = temp.sizeId;
+            int one = 1;
+            ViewBag.quantity = one;
 			ViewBag.ProductSizesModel = db.ProductSizes.ToList();
 			ViewBag.ProductColorsModel = db.ProductColors.ToList();
 			ViewBag.ProductReviewsModel = db.ProductReviews.ToList();

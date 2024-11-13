@@ -21,7 +21,7 @@
         <h2>@lar</h2>
     }
 }
-@*<h1 class="">@(ViewBag.Type)</h1>*@
+<h1 class="">@(ViewBag.bothGenders)</h1>*@
 <div class="col-12 d-flex justify-content-center @(Model.UniqueName != null && Model.UniqueName.Contains("Reebok") ? "" : "")">
     
     <div class="container-fluid col-10  m-0 d-flex justify-content-center">
@@ -76,7 +76,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if(ViewBag.Type == "Shoe" || ViewBag.Type == "Accessories")
+                                @if(ViewBag.Type == "Shoe" || ViewBag.Type == "Accessories" || ViewBag.type == "WinterWear")
                                 {
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
@@ -484,8 +484,12 @@
                                 {
                                     @foreach (var productImage2 in Model.ProductImagesModel)
                                     {
-                                        if (productImage2.ProductId == product.Id)
-                                            imageList.Add(productImage2.Image1.ToString());
+                                            if (productImage2.ProductId == product.Id)
+                                            {
+                                      
+                                                imageList.Add(productImage2.Image1.ToString());
+                                            }
+                                           
                                     }
                                     var json = JsonConvert.SerializeObject(imageList.ToArray());
                                     imageList.Clear();
@@ -497,7 +501,7 @@
 
                                             <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
+                                                <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price) </p>
                                                 @{
                                                     int ratingCount = 0;
                                                     float ratingTotal = 0;

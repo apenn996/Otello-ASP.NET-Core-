@@ -18,7 +18,7 @@
                 <img class="thumbnail-images" src="/assets/thumbnails/tech2.jpg" />
             </div>
             <div class="deals-grid-item " style="grid-column: 2 ; grid-row: 1 / span 2; ">
-                <a class="fill position-relative text-decoration-none text-dark" asp-controller="Products" asp-action="Category" asp-route-type="Halloween" >
+                <a class="fill position-relative text-decoration-none text-dark " asp-controller="Products" asp-action="Category" asp-route-type="Halloween">
                 <div class="thumbnail-header text-center mt-5" style="">
                     <h1 class="fw-bold">For the Halloween prepper</h1>  
                     
@@ -34,14 +34,14 @@
                     
                 <img class="thumbnail-images" src="/assets/thumbnails/back-to-school.jpg" />
             </div>
-            <div class="deals-grid-item  justify-content-center align-items-center not-allowed" style="grid-column: 2 / span 2; grid-row: 3 / span 1; ">
-                @*<a class="fill position-relative d-flex justify-content-center align-items-center" asp-controller="Products" asp-action="Home" >*@
+            <div class="deals-grid-item  justify-content-center align-items-center" style="grid-column: 2 / span 2; grid-row: 3 / span 1; ">
+                <a class="fill position-relative text-decoration-none text-dark d-flex justify-content-center align-items-center" asp-controller="Products" asp-action="Category" asp-route-type="Fall">
                 <div class="thumbnail-header text-center mb-5 text-black"> 
                     <h2 class="fw-bold">Seasons Greetings</h2>
                     <h6>Welcome fall with our colletion of fall themed decorations.</h6>
                 </div>
                 <img class="thumbnail-images" src="/assets/thumbnails/fall.jpeg" />
-                @*</a>*@
+                </a>
             </div>
             <div class="deals-grid-item" style="grid-column: 1 / span 1; grid-row: 2 / span 2; ">
                 <a class="fill position-relative" asp-controller="Products" asp-action="Apparel" >
@@ -87,10 +87,11 @@
         </div>
     
     <div class="row mt-5 ">
-        <h1 class="my-pad">Get ready for the big game</h1>
+        <h3 class="my-pad pb-0 fw-bold">Get ready for the big game</h3>
+        
         <div class="cover">
             <button class="left" onclick="leftScroll(this)">
-                <div style="height: 50px; width: 50px; border-radius: 100%;  border: 1px solid black;" class="dim d-flex justify-content-center align-items-center m-0 p-0">
+                <div class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
                     <img style="width: 70%; height: 70%; background-color:transparent" src="assets/left-a.png" />
 
                 </div>
@@ -111,7 +112,7 @@
                             if (product.Grouping == "Gameday")
                             {
                                 uniqueproduct.Add(product.Id.ToString());
-                                <li class="me-3" style="min-width: 200px; max-width: 200px;">
+                                <li class="me-3 d-flex flex-column justify-content-between align-items-center " style="min-width: 200px; max-width: 200px;">
                                     <div class=" text  m-2 p-0 overflow-hidden">
 
                                         <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
@@ -119,7 +120,7 @@
                                             <img class="horizontal-product-list-image" src="@(productImage.Image1)" alt="product image for " />
                                             <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
                                             <h4 class="fs-5">@(product.Name)</h4>
-                                            <p>@ViewBag.chosenMax</p>
+                                          
                                             @if(product.Type == "Shoe")
                                             {
                                             <h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
@@ -132,6 +133,9 @@
 
                                         </a>
                                     </div>
+                                    <a class="d-flex justify-content-center align-items-center quick-add text-decoration-none text-light" asp-controller="ShoppingCart" asp-action="QuickAddToCart" asp-route-cartItemId="@(product.Id)" asp-route-totalCost="@(product.Price)">
+                                        <h6 class="p-0 m-0">Add to Cart</h6>
+                                    </a>
                                 </li>
                             }
                           
@@ -143,7 +147,7 @@
          
         </ul>
             <button class="right" onclick="rightScroll(this)">
-                <div style="height: 50px; width: 50px; border-radius: 100%;  border: 1px solid black;" class="dim d-flex justify-content-center align-items-center m-0 p-0">
+                <div  class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
                     <img style="width: 70%; height: 70%; background-color:transparent" src="assets/right-a.png" />
                 </div>
                
@@ -154,12 +158,12 @@
            
     
     </div>
-
-    <div class="row mt-5 ">
-        <h1 class="my-pad">Fruits & Veggies</h1>
+    <hr />
+    <div class="row mt-5 mb-5 ">
+        <h3 class="my-pad pb-0 fw-bold">Fruits & Veggies</h3>
         <div class="cover ">
             <button class="left" onclick="leftScroll(this)">
-                <div style="height: 50px; width: 50px; border-radius: 100%;  border: 1px solid black;" class="dim d-flex justify-content-center align-items-center m-0 p-0">
+                <div class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
                     <img style="width: 70%; height: 70%; background-color:transparent" src="assets/left-a.png" />
 
                 </div>
@@ -180,7 +184,7 @@
                             if (product.Grouping == "Fruit" || product.Grouping == "Veggie")
                             {
                                 uniqueproduct.Add(product.Id.ToString());
-                                <li class="me-3" style="min-width: 200px; max-width: 200px;">
+                                <li class="me-3 d-flex flex-column justify-content-between align-items-center" style="min-width: 200px; max-width: 200px;">
                                     <div class=" text  m-2 p-0 overflow-hidden">
 
                                         <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
@@ -188,7 +192,7 @@
                                             <img class="horizontal-product-list-image" src="@(productImage.Image1)" alt="product image for " />
                                             <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price) <small class="fw-light" style="color: dimgray;">each</small></p>
                                             <h4 class="fs-5">@(product.Name)</h4>
-                                            <p>@ViewBag.chosenMax</p>
+                                           
                                             @if(product.Type == "Shoe")
                                             {
                                             <h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
@@ -201,6 +205,9 @@
 
                                         </a>
                                     </div>
+                                    <a class=" quick-add text-decoration-none text-light" asp-controller="ShoppingCart" asp-action="QuickAddToCart" asp-route-cartItemId="@(product.Id)" asp-route-totalCost="@(product.Price)">
+                                        <h6 class="p-0 m-0">Add to Cart</h6>
+                                    </a>
                                 </li>
                             }
 
@@ -212,16 +219,190 @@
 
             </ul>
             <button class="right" onclick="rightScroll(this)">
-                <div style="height: 50px; width: 50px; border-radius: 100%;  border: 1px solid black;" class="dim d-flex justify-content-center align-items-center m-0 p-0">
+                <div  class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
                     <img style="width: 70%; height: 70%; background-color:transparent" src="assets/right-a.png" />
                 </div>
 
             </button>
         </div>
-
-
-
-
     </div>
+<hr>
+    <div class="row  ">
+        <div class="deals-grid2 mt-5 mb-5">
+            <div class="deals-grid-info " style="grid-column: 1 / span 1; grid-row: 1 / span 1; ">
+                <div class="thumbnail-header text-center overflow-hidden text-light fill d-flex align-items-center">
+                    <h1 class="fw-bold">Our Winter Selection</h1>
+                    
+                </div>
+                <img class="thumbnail-images " src="/assets/thumbnails/winter-sky.jpg" />
+            </div>
+            <div class="deals-grid-item " style="grid-column: 1 / span 2 ; grid-row: 2 / span 1;  ">
+               
+                
+                    <a class="fill position-relative text-decoration-none text-dark " asp-controller="Products" asp-action="Category" asp-route-type="WinterWear">
+                        <div class="thumbnail-header d-flex justify-content-start  " style="width:150px;">
+                            <h1 class="fw-bold text-light">Winter Clothes</h1>
+
+                        </div>
+                        <img class="thumbnail-images " src="/assets/thumbnails/winter-wear.png" />
+                    </a>
+                
+            
+                
+            </div>
+           
+            <div class="deals-grid-item " style="grid-column: 3 / span 2 ; grid-row: 2 / span 1;">
+                <a class="fill position-relative text-decoration-none text-dark " asp-controller="Products" asp-action="Category" asp-route-type="Candles">
+                    <div class="thumbnail-header text-center  text-light d-flex align-items-center flex-column col-12" style="">
+                        <h1 class="fw-bold ">Seasonal Scents</h1>
+                        <h6 class="col-10">From Thanksgiving to Christmas, find the perfect scent for your holiday mood. </h6>
+                    </div>
+                    <img class="thumbnail-images" src="/assets/thumbnails/winter-candles.webp" />
+                </a>
+            </div>
+            
+            <div class="overflow-hidden" style="grid-column: 2 / span 3 ; grid-row: 1 / span 1;  ">
+                <h3 class="cover fw-bold">Christmas Spirit</h3>
+                <div class="cover ">
+                <button class="left" onclick="leftScroll(this)">
+                    <div  class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
+                        <img style="width: 70%; height: 70%; background-color:transparent" src="assets/left-a.png" />
+
+                    </div>
+                </button>
+                <ul class="pb-4 plain-list horizontal-product-list scroll-images ">
+
+                    @{
+                        uniqueproduct.Clear();
+                    }
+
+                    @foreach (var productImage in Model.ProductImagesModel)
+                    {
+                        @foreach (var product in Model.ProductModel)
+                        {
+
+                            if (product.Id == productImage.ProductId && !uniqueproduct.Contains(product.Id.ToString()))
+                            {
+                                if (product.Grouping == "Christmas" )
+                                {
+                                    uniqueproduct.Add(product.Id.ToString());
+                                        <li class="me-3 d-flex flex-column justify-content-between " style=" min-width: 200px; max-width: 200px;">
+                                        <div class=" text  m-2 p-0 overflow-hidden">
+
+                                            <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
+
+                                                <img class="horizontal-product-list-image" src="@(productImage.Image1)" alt="product image for " />
+                                                <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price) <small class="fw-light" style="color: dimgray;">each</small></p>
+                                                <h4 style="max-height: 50px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" class="fs-5">@(product.Name)</h4>
+                                                
+                                                @if (product.Type == "Shoe")
+                                                {
+                                                    <h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
+                                                }
+                                                else
+                                                {
+                                                    <h6 class=" "> @(product.Brand) • @(product.Type)</h6>
+
+
+                                                }
+
+                                            </a>
+                                        </div>
+                                            <a class="align-self-end quick-add text-decoration-none text-light" asp-controller="ShoppingCart" asp-action="QuickAddToCart" asp-route-cartItemId="@(product.Id)" asp-route-totalCost="@(product.Price)">
+                                                <h6 class="p-0 m-0">Add to Cart</h6>
+                                            </a>
+                                    </li>
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                </ul>
+                <button class="right" onclick="rightScroll(this)">
+                    <div  class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
+                        <img style="width: 70%; height: 70%; background-color:transparent" src="assets/right-a.png" />
+                    </div>
+
+                </button>
+            </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 mb-5 ">
+            <h3 class="my-pad pb-0 fw-bold">Flavor's favor</h3>
+            <div class="cover ">
+                <button class="left" onclick="leftScroll(this)">
+                    <div  class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
+                        <img style="width: 70%; height: 70%; background-color:transparent" src="assets/left-a.png" />
+
+                    </div>
+                </button>
+                <ul class="plain-list horizontal-product-list scroll-images pt-4 pb-4">
+
+                    @{
+                        uniqueproduct.Clear();
+                    }
+
+                    @foreach (var productImage in Model.ProductImagesModel)
+                    {
+                        @foreach (var product in Model.ProductModel)
+                        {
+
+                            if (product.Id == productImage.ProductId && !uniqueproduct.Contains(product.Id.ToString()))
+                            {
+                                if (product.Type == "Condiments")
+                                {
+                                    uniqueproduct.Add(product.Id.ToString());
+                                    <li class="me-3 d-flex flex-column justify-content-between align-items-center" style="min-width: 200px; max-width: 200px; ">
+                                        <div class=" text  m-2 p-0 overflow-hidden">
+
+                                            <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
+
+                                                <img class="horizontal-product-list-image" src="@(productImage.Image1)" alt="product image for " />
+                                                <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price) <small class="fw-light" style="color: dimgray;">each</small></p>
+                                                <h4 class="fs-5">@(product.Name)</h4>
+
+                                                @if (product.Type == "Shoe")
+                                                {
+                                                    <h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
+                                                }
+                                                else
+                                                {
+                                                    <h6 class=" "> @(product.Brand) • @(product.Type)</h6>
+
+
+                                                }
+
+                                            </a>
+                                        </div>
+                                            <a class=" quick-add text-decoration-none text-light" asp-controller="ShoppingCart" asp-action="QuickAddToCart" asp-route-cartItemId="@(product.Id)" asp-route-totalCost="@(product.Price)">
+                                            <h6 class="p-0 m-0">Add to Cart</h6>
+                                        </a>
+                                    </li>
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                </ul>
+                <button class="right" onclick="rightScroll(this)">
+                    <div  class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
+                        <img style="width: 70%; height: 70%; background-color:transparent" src="assets/right-a.png" />
+                    </div>
+
+                </button>
+            </div>
+        </div>
+
+        </div>
+
+
+  
 </div>
 

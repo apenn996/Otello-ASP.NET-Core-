@@ -12,7 +12,7 @@
             <div class="overlay-text-container fit text-center">
                 <h1 style="font-size: 45px;" class="">Halloween Happenings</h1>
                 <p style="font-size: 20px;">The Perfect Halloween Decorations</p>
-                <a asp-controller="Products" asp-action="Index" class="btn btn-light hero-button"> Shop Now</a>
+                <a asp-controller="Products" asp-action="Category" asp-route-type="Halloween" class="btn btn-light hero-button"> Shop Now</a>
             </div>
 
         </div>
@@ -25,7 +25,7 @@
             <div class="product-circle">
                 <div class="d-flex justify-content-center">
                     <a asp-controller="Products" asp-action="Category" asp-route-type="Decorations">
-                        <img class="" src="~/assets/Products/Apparel/Womens/womens-ad.png" />
+                        <img class="" src="~/assets/Products/Home/decorations-circle.webp" />
                         <h5 class="text-black text-center">Decorations</h5>
                     </a>
                 </div>
@@ -34,13 +34,27 @@
             <div class="product-circle">
                 <div class="d-flex justify-content-center">
                     <a asp-controller="Products" asp-action="Category" asp-route-type="Furniture">
-                        <img class="" src="~/assets/Products/Apparel/Mens/mens-ad.png" />
+                        <img class="" src="~/assets/Products/Home/furniture-circle.webp" />
                         <h5 class="text-black text-center">Furniture</h5>
                     </a>
                 </div>
             </div>
-
-            
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Candles">
+                        <img class="" src="~/assets/Products/Home/furniture-circle.webp" />
+                        <h5 class="text-black text-center">Candles</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Essentials">
+                        <img class="" src="~/assets/Products/Home/furniture-circle.webp" />
+                        <h5 class="text-black text-center">Essentials</h5>
+                    </a>
+                </div>
+            </div>
 
 
         </div>

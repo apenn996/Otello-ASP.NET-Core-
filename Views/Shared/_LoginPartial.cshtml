@@ -34,7 +34,12 @@
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button type="submit" class="nav-link btn btn-link text-dark col-12">Logout</button>
                 </form>
-
+            </li>
+           @*<li class="navlink-dropdown-item col-12">
+                <a class=" nav-link btn btn-link text-dark position-relative d-flex justify-content-center align-items-center" asp-controller="Account" asp-action="Index">
+                    Account Info.
+                </a>
+        </li>*@
             <li class="navlink-dropdown-item col-12">
                         <a class=" nav-link btn btn-link text-dark position-relative d-flex justify-content-center align-items-center" asp-controller="ShoppingCart" asp-action="Index">
                 Cart</a>

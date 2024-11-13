@@ -11,7 +11,9 @@ function displayImage(el) {
     
     
 }
-
+var testing = document.getElementById("testing123");
+if(testing)
+testing.click();
 function showdropdown(menu) {
     menu.classList.add("show");
     if (menu.id) {
@@ -85,7 +87,7 @@ var myFunc = function () {
     console.log(this.scrollWidth - this.clientWidth);
     leftButton = this.parentNode.querySelector(".left");
     rightButton = this.parentNode.querySelector(".right");
-        if (currentScroll === 0) {
+    if (currentScroll === 0 ) {
             leftButton.setAttribute("disabled", "true");
             leftButton.style.visibility = "hidden";
             rightButton.removeAttribute("disabled");
@@ -118,7 +120,7 @@ function leftScroll(el) {
     var temp = el.parentNode;
     var real = temp.querySelector(".scroll-images");
     real.scrollBy({
-        left: -500,
+        left: -300,
         behavior: "smooth"
     });
 
@@ -128,7 +130,7 @@ function rightScroll(el) {
     var temp = el.parentNode;
     var real = temp.querySelector(".scroll-images");
     real.scrollBy({
-        left: 500,
+        left: 300,
         behavior: "smooth"
     });
 

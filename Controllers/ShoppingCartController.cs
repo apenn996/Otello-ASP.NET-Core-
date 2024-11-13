@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -37,8 +38,44 @@ namespace Otello.Controllers
             return View();
         }
 
-       
-        
+        [Authorize]
+        public async Task<IActionResult> QuickAddToCart(int cartItemId, double totalCost)
+        {
+           // colorid, sizeid, variation id
+           var notVariantProductinImages = db.ProductImages.FirstOrDefault(a => a.ProductId == cartItemId && a.variant == false);
+            System.Diagnostics.Debug.WriteLine("OMGOMGOMGOMGOGOGMGOGMGOGMGOMGOMG: " + notVariantProductinImages.Id);
+            var notVariantProductinVariation = db.ProductVariations.FirstOrDefault(s => s.productId == notVariantProductinImages.ProductId && s.colorId == notVariantProductinImages.colorId);
+            var variationId = notVariantProductinVariation.Id;
+            var userId = User.Identity?.Name;
+            bool dbOperationSuccess = false;
+           
+            //adds a row to the shopping cart table
+            ShoppingCart cartEntry = new ShoppingCart(userId, 1, variationId, totalCost);
+            db.ShoppingCart.Add(cartEntry);
+
+            //decrements the stock for the product item's table
+            var decrementProduct = db.Product.FirstOrDefault(s => s.Id == cartItemId);
+            decrementProduct.Stock -= 1;
+            db.Entry(decrementProduct).State = EntityState.Modified;
+
+
+            if (db.SaveChanges() > 0)
+            {
+                dbOperationSuccess = true;
+            }
+
+
+
+            ViewBag.ShoppingCartModel = db.ShoppingCart.ToList();
+            ViewBag.ProductModel = db.Product.ToList();
+            ViewBag.ProductImagesModel = db.ProductImages.ToList();
+
+
+
+            return RedirectToAction("Index", "Home");
+
+        }
+
         [Authorize]
         public async Task<IActionResult> AddToCart(int cartItemId, int quantity, int variationId, double totalCost, int cId, int sId, int vId)
         {
@@ -52,7 +89,7 @@ namespace Otello.Controllers
             
             //decrements the stock for the product item's table
             var decrementProduct = db.Product.FirstOrDefault(s=>s.Id == cartItemId);
-            decrementProduct.Stock--;
+            decrementProduct.Stock-= quantity;
             db.Entry(decrementProduct).State = EntityState.Modified;
 
 			
@@ -180,12 +217,12 @@ namespace Otello.Controllers
             }
 			var temp = db.Product.FirstOrDefault(s => s.Id == pId);
             ViewBag.my = temp.Id;
-			return View(shoppingCart);
-        }
+            return RedirectToAction("DeleteConfirmed", new { id = id, pId = pId });
+		}
 
         // POST: ShoppingCart/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+       // [HttpPost, ActionName("Delete")]
+       // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id, int pId)
         {
             if (db.ShoppingCart == null)
@@ -198,7 +235,7 @@ namespace Otello.Controllers
                 
                 db.ShoppingCart.Remove(shoppingCart);
 				var incrementProduct = db.Product.FirstOrDefault(s => s.Id == pId);
-				incrementProduct.Stock++;
+				incrementProduct.Stock+=shoppingCart.Quantity;
 				db.Entry(incrementProduct).State = EntityState.Modified;
 			}
             

@@ -18,94 +18,135 @@
 <br />
 <br />
 <br />
-<h1>@ViewBag.TestAlert</h1>
+
+
 @if(ViewBag.TestAlert == "false")
 {
 	<h1>false</h1>
 }
 @if(ViewBag.TestAlert == "True" )
 {
-	<!-- Button trigger modal -->
-	<div class="col-12 d-flex justify-content-center align-items-center position-fixed " style="z-index: 8; bottom: 50%; right: 50%;">
-		<div class="alert alert-success alert-dismissible fade show  cart-alert" role="alert">
-			This item has been successfully added to <a class="alert-link" asp-controller="ShoppingCart" asp-action="Index">your cart</a>
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+	
+
+	<button id="testing123" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		Launch demo modal
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Success!</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>	The item:</p>
+					<ul>
+							<li>
+					
+					@foreach (Product product in ViewBag.ProductModel)
+					{
+						if(product.Id == ViewBag.Id){
+						
+
+							<p>@product.Name</p>
+							
+						}
+					}
+					</li>
+					</ul>
+					<p>has successfully been added to your cart!</p>
+				</div>
+				
+			</div>
 		</div>
 	</div>
-	
 }
+@{
+	var grouping = "";
+	var type = "";
+}
+
 <div class="col-12 d-flex justify-content-center">
 	<div class="container-fluid col-xl-11  m-0 d-flex flex-column align-items-center">
 		<div style="max-width: 1400px; " class="row col-12 ">
-			<div class="tests col-8">
+			<div class="col-8">
+				<div class="tests " style="z-index: 5;">
 
 
-				<div class=" filter-column   ">
-					@foreach (ProductImages productImage in ViewBag.ProductImagesModel)
-					{
-						@foreach (Product product in ViewBag.ProductModel)
+					<div class=" filter-column   ">
+						@foreach (ProductImages productImage in ViewBag.ProductImagesModel)
 						{
-							//var temp = product.CategoryId;
-							//bool temp2 = temp == 1;
-							if ( productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id && ViewBag.colorId == productImage.colorId)
+							@foreach (Product product in ViewBag.ProductModel)
 							{
-								<ul class="product-display-list plain-list d-flex flex-column align-items-end justify-content-start">
-									<li class="bg-dark">
-										<img onmouseover="displayImage(this)" class=" product-display-list-image" src="@(productImage.Image1)" alt="product image for " />
-									</li>
-									@if (productImage.Image2 != null)
-									{
+								//var temp = product.CategoryId;
+								//bool temp2 = temp == 1;
+								if (productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id && ViewBag.colorId == productImage.colorId)
+								{
+									<ul class="product-display-list plain-list d-flex flex-column align-items-end justify-content-start">
 										<li class="bg-dark">
-											<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image2)" alt="product image for " />
+											<img onmouseover="displayImage(this)" class=" product-display-list-image" src="@(productImage.Image1)" alt="product image for " />
 										</li>
-									}
-									@if (productImage.Image3 != null)
-									{
-										<li class="bg-dark">
-											<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image3)" alt="product image for " />
-										</li>
-									}
-									@if (productImage.Image4 != null)
-									{
-										<li class="bg-dark">
-											<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image4)" alt="product image for " />
-										</li>
-									}
-									@if (productImage.Image5 != null)
-									{
-										<li class="bg-dark">
-											<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image5)" alt="product image for " />
-										</li>
-									}
-									@if (productImage.Image6 != null)
-									{
-										<li class="bg-dark">
-											<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image6)" alt="product image for " />
-										</li>
-									}
+										@if (productImage.Image2 != null)
+										{
+											<li class="bg-dark">
+												<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image2)" alt="product image for " />
+											</li>
+										}
+										@if (productImage.Image3 != null)
+										{
+											<li class="bg-dark">
+												<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image3)" alt="product image for " />
+											</li>
+										}
+										@if (productImage.Image4 != null)
+										{
+											<li class="bg-dark">
+												<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image4)" alt="product image for " />
+											</li>
+										}
+										@if (productImage.Image5 != null)
+										{
+											<li class="bg-dark">
+												<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image5)" alt="product image for " />
+											</li>
+										}
+										@if (productImage.Image6 != null)
+										{
+											<li class="bg-dark">
+												<img onmouseover="displayImage(this)" class="product-display-list-image" src="@(productImage.Image6)" alt="product image for " />
+											</li>
+										}
 
-								</ul>
+									</ul>
+								}
 							}
 						}
-					}
-				</div>
-				<div style="width: 100%;" class=" filter-column  d-flex justify-content-center ">
-					@foreach (ProductImages productImage in ViewBag.ProductImagesModel)
-					{
-						@foreach (Product product in ViewBag.ProductModel)
+					</div>
+					<div style="width: 100%;" class=" filter-column  d-flex justify-content-center ">
+						@foreach (ProductImages productImage in ViewBag.ProductImagesModel)
 						{
-							//var temp = product.CategoryId;
-							//bool temp2 = temp == 1;
-							if( productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id && ViewBag.ColorId == productImage.colorId)
+							@foreach (Product product in ViewBag.ProductModel)
 							{
-								<div id="product-display-image" class=" magnifier-thumb-wrapper position-relative">
-									<img id="thumb" src="@(productImage.Image1)" alt="product image for " />
-								</div>
+								//var temp = product.CategoryId;
+								//bool temp2 = temp == 1;
+								if (productImage.ProductId == product.Id && productImage.Id > 0 && ViewBag.Id == product.Id && ViewBag.ColorId == productImage.colorId)
+								{
+									grouping = product.Grouping;
+									type = product.Type;
+
+									<div id="product-display-image" class=" magnifier-thumb-wrapper position-relative">
+										<img id="thumb" src="@(productImage.Image1)" alt="product image for " />
+									</div>
+								}
 							}
 						}
-					}
+					</div>
 				</div>
 			</div>
+			
 
 
 			<div class="  col-4">
@@ -181,7 +222,7 @@
 													}
 
 
-													<a class="" asp-action="ProductDisplay" asp-route-id="@product.Id" asp-route-colorId="@item" asp-route-sizeId="@ViewBag.SizeId" asp-route-variationId="@productVariation.Id">
+													<a class="" asp-action="ProductDisplay" asp-route-id="@product.Id" asp-route-colorId="@item" asp-route-sizeId="@ViewBag.SizeId" asp-route-variationId="@productVariation.Id" asp-route-quantity="@ViewBag.Quantity">
 														@foreach (ProductImages productImage2 in ViewBag.ProductImagesModel)
 														{
 															if (productImage2.colorId == item && productVariation.productId == productImage2.ProductId)
@@ -201,26 +242,36 @@
 							</ul>
 
 
-							
 
-							
-							
-							<select name="selectTest" class="col-12" id="cars">
+							<h5 class="mt-4">Select a Quantity:</h5>
+							if (product.Stock >= 1)
+							{
 
-								@for (int i= 1; i <= 10; i++){
-												
-									
+								<div style="z-index: 0;" class="dropdown" >
+									<a class="btn btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
 
-									<!-- Works in Razor views -->
-									<!option value="@i" >
-										@i
-									</!option>
+										@ViewBag.quantity
+									</a>
 
-									
-								}
-								
-								</select>
-						
+									<ul class="dropdown-menu" style="width:fit-content; max-height: 200px; overflow: hidden; overflow-y: visible;"  >
+
+										@for (int i = 1; i <= ((@product.Stock > 30) ? 30 : @product.Stock); i++)
+										{
+											<li class="col-12 secondary-list-item p-0">
+												<a class=" fill text-decoration-none text-dark" asp-action="ProductDisplay" asp-route-id="@product.Id" asp-route-colorId="@ViewBag.ColorId" asp-route-sizeId="@ViewBag.SizeId" asp-route-variationId="@ViewBag.vId" asp-route-quantity="@i">
+													<p class="p-1 m-0">@i</p>
+												</a>
+											</li>
+
+										}								
+									</ul>
+								</div>
+							}
+							else
+							{
+								<p class="text-danger">Out of Stock</p>
+							}
+
 								@*<script type="text/javascript">
 									 var select = document.getElementById("cars");
 
@@ -228,59 +279,68 @@
 										 select.innerHTML += '<option>' + i + '</option>';
 									 }
 				</script>*@
-							
-							<h5 class="mt-4">Select a Size:</h5>
-							<ul class="size-list">
-								@foreach (ProductVariations productVariation in ViewBag.Pe)
-								{
-									@foreach (ProductColors productColor in ViewBag.ProductColorsModel)
+							if(product.Size != "")
+							{
+								<h5 class="mt-4">Select a Size:</h5>
+								<ul class="size-list">
+									@foreach (ProductVariations productVariation in ViewBag.Pe)
 									{
-										if (productVariation.productId == ViewBag.Id && productVariation.colorId == ViewBag.ColorId && productImage.colorId == productVariation.colorId && !sizeList.Contains(productVariation.sizeId))
+										@foreach (ProductColors productColor in ViewBag.ProductColorsModel)
 										{
-											sizeList.Add(productVariation.sizeId);
-											<li class="size-list-item">
+											if (productVariation.productId == ViewBag.Id && productVariation.colorId == ViewBag.ColorId && productImage.colorId == productVariation.colorId && !sizeList.Contains(productVariation.sizeId))
+											{
+												sizeList.Add(productVariation.sizeId);
+												<li class="size-list-item">
 
-												@foreach (ProductSizes productSize in ViewBag.ProductSizesModel)
-												{
-													if (productSize.Id == productVariation.sizeId)
+													@foreach (ProductSizes productSize in ViewBag.ProductSizesModel)
 													{
-														bool isSelected = false;
-														if (productVariation.Id == ViewBag.vId && productVariation.colorId == ViewBag.ColorId && productVariation.sizeId == ViewBag.SizeId)
+														if (productSize.Id == productVariation.sizeId)
 														{
-															isSelected = true;
+															bool isSelected = false;
+															if (productVariation.Id == ViewBag.vId && productVariation.colorId == ViewBag.ColorId && productVariation.sizeId == ViewBag.SizeId)
+															{
+																isSelected = true;
+															}
+
+															<a class="@(isSelected ? "selected" : "") fill d-flex justify-content-center align-content-center flex-wrap text-decoration-none" asp-action="ProductDisplay" asp-route-id="@product.Id" asp-route-colorId="@productVariation.colorId" asp-route-sizeId="@productVariation.sizeId" asp-route-variationId="@productVariation.Id" asp-route-quantity="@ViewBag.quantity">
+
+																<h5>@productSize.Size</h5>
+															</a>
 														}
 
-														<a class="@(isSelected ? "selected" : "") fill d-flex justify-content-center align-content-center flex-wrap text-decoration-none" asp-action="ProductDisplay" asp-route-id="@product.Id" asp-route-colorId="@productVariation.colorId" asp-route-sizeId="@productVariation.sizeId" asp-route-variationId="@productVariation.Id">
-
-															<h5>@productSize.Size</h5>
-														</a>
 													}
+												</li>
+											}
 
-												}
-											</li>
 										}
-
 									}
-								}
 
-							</ul>
-							
-							
-							<h6 class="mt-4">Shipping</h6>
-							<p>View our shipping options at checkout.</p>
-							@foreach (ProductVariations productVariation in ViewBag.Pe)
-							{
-
-
-								if (productVariation.Id == ViewBag.vId && productVariation.colorId == ViewBag.ColorId && productVariation.sizeId == ViewBag.SizeId)
-								{
-									<a class="tocart-button mt-4" asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-quantity="1" asp-route-variationId="@(productVariation.Id)" asp-route-totalCost="@(product.Price)" asp-route-cartItemId="@(product.Id)" asp-route-cId="@(ViewBag.ColorId)" asp-route-sId="@(ViewBag.SizeId)" asp-route-vId="@(ViewBag.vId)" onclick="">
-										<p class="text-black fs-6 mb-0">Add to Cart</p>
-									</a>
-								}
+								</ul>
+							}else{
 
 							}
-							<p class="mt-4">@(product.Description)</p>
+
+
+							if (product.Stock >= 1)
+							{
+								<h6 class="mt-4">Shipping</h6>
+								<p>View our shipping options at checkout.</p>
+								@foreach (ProductVariations productVariation in ViewBag.Pe)
+								{
+
+
+									if (productVariation.Id == ViewBag.vId && productVariation.colorId == ViewBag.ColorId && productVariation.sizeId == ViewBag.SizeId)
+									{
+										<a class="tocart-button mt-4" asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-quantity="@ViewBag.quantity" asp-route-variationId="@(productVariation.Id)" asp-route-totalCost="@(product.Price)" asp-route-cartItemId="@(product.Id)" asp-route-cId="@(ViewBag.ColorId)" asp-route-sId="@(ViewBag.SizeId)" asp-route-vId="@(ViewBag.vId)" onclick="">
+											<p class="text-black fs-6 mb-0">Add to Cart</p>
+										</a>
+									}
+
+								}
+							}
+							<h6 class="mt-4">Description</h6>
+							<p >@(product.Description)</p>
+							<h6>Attributes</h6>
 							<ul class="mt-4">
 								<li>
 									@foreach (ProductColors productColor in ViewBag.ProductColorsModel)
@@ -532,7 +592,7 @@
 								</div>
 							</div>
 
-							<p>@(product.Description)</p>
+							
 
 
 						}
@@ -540,9 +600,88 @@
 					}
 				}
 			</div>
+			<h3 class="mypad pb-0 mt-5 fw-bold">More about this retailer</h3>
+			<div class="row  mb-5 ">
+				<div class="col-12 retailer-info">
+					<a class="fill position-relative text-decoration-none text-dark " asp-controller="Home" asp-action="Index">
+						
+						<img class=" retailer-info-img " src="/assets/thumbnails/winter-wear.png" />
+					</a>
+				</div>
+			</div>
+			@{
+				List<string> uniqueproduct = new List<string>();
+			}
+			<div class="row mt-5 mb-5 ">
+				<h3 class="my-pad pb-0 fw-bold">Similar Items</h3>
+				<div class="cover ">
+					<button class="left" onclick="leftScroll(this)">
+						<div class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
+							<img style="width: 70%; height: 70%; background-color:transparent" src="~/assets/left-a.png" />
 
+						</div>
+					</button>
+					<ul class="plain-list horizontal-product-list scroll-images pt-4 pb-4">
+
+						@{
+							uniqueproduct.Clear();
+						}
+
+						@foreach (var productImage in ViewBag.ProductImagesModel)
+						{
+							@foreach (var product in ViewBag.ProductModel)
+							{
+
+								if (product.Id == productImage.ProductId && !uniqueproduct.Contains(product.Id.ToString()) && product.Id != ViewBag.Id)
+								{
+									if (product.Type == type || product.Grouping == grouping )
+									{
+										uniqueproduct.Add(product.Id.ToString());
+										<li class="me-3 d-flex flex-column justify-content-between align-items-center" style="min-width: 200px; max-width: 200px; ">
+											<div class=" text  m-2 p-0 overflow-hidden">
+
+												<a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
+
+													<img class="horizontal-product-list-image" src="@(productImage.Image1)" alt="product image for " />
+													<p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price) <small class="fw-light" style="color: dimgray;">each</small></p>
+													<h4 class="fs-5">@(product.Name)</h4>
+
+													@if (product.Type == "Shoe")
+													{
+														<h5 class=" ">@((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : "Unisex") @(product.Type)</h5>
+													}
+													else
+													{
+														<h6 class=" "> @(product.Brand) • @(product.Type)</h6>
+
+
+													}
+
+												</a>
+											</div>
+											<a class=" quick-add text-decoration-none text-light" asp-controller="ShoppingCart" asp-action="QuickAddToCart" asp-route-cartItemId="@(product.Id)" asp-route-totalCost="@(product.Price)">
+												<h6 class="p-0 m-0">Add to Cart</h6>
+											</a>
+										</li>
+									}
+
+								}
+
+							}
+
+						}
+
+					</ul>
+					<button class="right" onclick="rightScroll(this)">
+						<div class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
+							<img style="width: 70%; height: 70%; background-color:transparent" src="~/assets/right-a.png" />
+						</div>
+
+					</button>
+				</div>
+			</div>
 		</div>
-
+		
 		@*<div class="row col-12">
 			<div class=" bg-secondary col-4">
 				@foreach (ProductImages productImage in ViewBag.ProductImagesModel)

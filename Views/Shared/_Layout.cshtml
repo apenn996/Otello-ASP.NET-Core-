@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/Otello.styles.css" asp-append-version="true" />
     
 </head>
-<body>
+<body class="">
     <header>
 
        @*  <partial name="Navbar" /> *@
@@ -20,24 +20,24 @@
         <partial name="SecondaryNavbar" />
     </header>
 
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 position-relative ">
         <div id="dropdown-overlay" class="">
         </div>
-        <main role="main" class="pb-3">
+        <main role="main" class="" style="padding-bottom: 150px;">
             @RenderBody()
         </main>
     </div>
-    <footer id="myfooter" class="border-top footer text-muted text-light d-flex flex-direction-column">
+    <footer id="myfooter" class="bg-dark border-top footer text-muted text-light d-flex flex-direction-column">
         <div class="container position-relative d-flex justify-content-center" style="width: fit-content;">
             <div class="text-light me-5" >
-                <h4>My other websites:</h4>
+                <h4>Other stuff:</h4>
                 
                 <h6 class=" "><a class="text-light" href="https://austinpennartz.net">My Portfolio</a></h6>
                 <h6 class=" "><a class="text-light" href="https://binge-ify.netlify.app">Binge-ify</a> - A React.js site</h6>
                 <h6 class=" "><a class="text-light" href="https://austinpennartz.net/HotelWebsite">Travelonics</a> - A LEMP app.</h6>
             </div>
             <div class="text-light me-5">
-                <h4>Find me on:</h4>
+                <h4>Im on:</h4>
 
                 <h6 class=" "><a class="text-light" href="https://github.com/apenn996">Github</a></h6>
                 
