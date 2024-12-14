@@ -6,7 +6,7 @@
 
 <nav id="primary-nav" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom border-light box-shadow p-3 ">
     <div class="container-fluid col-12 col-md-9">
-        <a class="navbar-brand navlink-container text-white" asp-area="" asp-controller="Home" asp-action="Index">Otello</a>
+        <a class="navbar-brand navlink-container text-white " asp-area="" asp-controller="Home" asp-action="Index">Otello</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
 
                 <partial name="_LoginPartial" />
             </ul>
-            <a class="navlink-container nav-link text-light position-relative d-flex justify-content-center align-items-center" asp-controller="ShoppingCart" asp-action="Index">
+            <a class="cart-link navlink-container nav-link text-light position-relative d-flex justify-content-center align-items-center" asp-controller="ShoppingCart" asp-action="Index">
                 <img id="shoppingCart" src="~/assets/cart-light.png" alt="shopping cart image">
                 <div class="d-flex justify-content-center align-items-center" id="shoppingCartQuantity">
                    

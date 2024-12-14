@@ -19,6 +19,7 @@ namespace Otello.Data
         public DbSet<Otello.Models.ProductVariations>? ProductVariations { get; set; }
         public DbSet<Otello.Models.ProductColors>? ProductColors { get; set; }
         public DbSet<Otello.Models.ProductSizes>? ProductSizes { get; set; }
-        
-    }
+		public object Brands { get; internal set; }
+		public DbSet<Otello.Models.ProductBrands>? ProductBrands { get; set; }
+	}
 }

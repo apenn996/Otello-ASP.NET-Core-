@@ -11,9 +11,9 @@
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
      *@
-    
-    
-    <li class="dropdown text d-flex justify-content-center align-items-center">
+
+
+    <li class="dropdown text d-flex justify-content-center align-items-center login-container">
         <a class="navlink-container btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
 
             <div class=" d-flex justify-content-center align-items-center">
@@ -30,7 +30,7 @@
             </div>
         </a>
         <ul class="navlink-dropdown dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li class="navlink-dropdown-item col-12">
+            <li class="navlink-dropdown-item col-12 ">
                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button type="submit" class="nav-link btn btn-link text-dark col-12">Logout</button>
                 </form>

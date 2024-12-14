@@ -66,6 +66,21 @@ namespace Otello.Controllers
             return View(model);
 
         }
+
+        public async Task<IActionResult> Essentials()
+        {
+            List<Product> products = new List<Product>();
+            products = db.Product.ToList();
+            List<ProductImages> productsImages = new List<ProductImages>();
+            productsImages = db.ProductImages.ToList();
+
+            ViewModel model = new ViewModel();
+            model.ProductModel = db.Product.ToList();
+            model.ProductImagesModel = db.ProductImages.ToList();
+
+            return View(model);
+
+        }
         [HttpPost]
         [Route("/Products/Category/{type}")]
         public async Task<IActionResult> Category(string type, ViewModel model, int maxslider, int minslider)
@@ -85,6 +100,10 @@ namespace Otello.Controllers
             model.chosenMax = ViewBag.chosenMax;
             ViewBag.chosenMin = minslider;
             model.chosenMin = ViewBag.chosenMin;
+
+            var productForType = db.Product.FirstOrDefault(s => s.Type == type);
+            System.Diagnostics.Debug.WriteLine("THIS IS A TEST FOR THE CATEGORY ID: " + productForType.CategoryId);
+            ViewBag.CategoryId = productForType.CategoryId;
 
             productsImages = db.ProductImages.ToList();
             model.ProductModel = db.Product.ToList();
@@ -204,7 +223,7 @@ namespace Otello.Controllers
                   );
             brandList = model;
 
-
+         
 
 
             return RedirectToAction("Category", new { type = type});
@@ -217,7 +236,9 @@ namespace Otello.Controllers
             ViewBag.bothGenders = "false";
             System.Diagnostics.Debug.WriteLine("c2 --------------------------------");
             ViewBag.Type = type;
-            
+            var productForType = db.Product?.FirstOrDefault(s => s.Type == type);
+            System.Diagnostics.Debug.WriteLine("THIS IS A TEST FOR THE CATEGORY ID: " + productForType?.CategoryId);
+            ViewBag.CategoryId = productForType?.CategoryId;
             List<Product> products = new List<Product>();
             List<ProductImages> productsImages = new List<ProductImages>();
             products = db.Product.ToList();
@@ -351,7 +372,8 @@ namespace Otello.Controllers
                 return
                 View(model);
             }
-
+          
+           
             ViewBag.chosenMax = brandList.chosenMax;
             ViewBag.chosenMin = brandList.chosenMin;
             ViewModel temp = new ViewModel();
@@ -386,7 +408,7 @@ namespace Otello.Controllers
             System.Diagnostics.Debug.WriteLine("1" + id +  colorId +  sizeId +  variationId);
 			ViewBag.vId = variationId;
             ViewBag.Quantity = quantity;
-			
+			ViewBag.Brands = db.ProductBrands.ToList();
 			ViewBag.ProductReviewsModel = db.ProductReviews.ToList();
 			ViewBag.ProductSizesModel = db.ProductSizes.ToList();
 			ViewBag.ProductColorsModel = db.ProductColors.ToList();
@@ -414,6 +436,7 @@ namespace Otello.Controllers
             ViewBag.SizeId = temp.sizeId;
             int one = 1;
             ViewBag.quantity = one;
+            ViewBag.Brands = db.ProductBrands.ToList();
 			ViewBag.ProductSizesModel = db.ProductSizes.ToList();
 			ViewBag.ProductColorsModel = db.ProductColors.ToList();
 			ViewBag.ProductReviewsModel = db.ProductReviews.ToList();

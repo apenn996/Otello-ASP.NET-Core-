@@ -15,28 +15,41 @@
                         Electronics
                     </a>
                 </li>*@
-                <li class="dropdown secondary-navlink-container">
-                    <a class=" btn text-light dropdown-toggle" asp-controller="Products" asp-action="Apparel" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
-                        Essentials
+
+                <li class=" dropdown secondary-navlink-container true-nav-item">
+                    <a class=" btn text-light dropdown-toggle fw-bold" asp-controller="Products" asp-action="Grocery" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        Grocery
                     </a>
-                    <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="apparelMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                    <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="groceryMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
                         <li class=" col-12">
-                            
-                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Supplies">
-                                Supplies
+                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Produce">
+                                Produce
                             </a>
                         </li>
                         <li class=" col-12">
-                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Electronics">
-                                Electronics
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Pets">
+                                Pets
                             </a>
                         </li>
-                       
-                       
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Snacks">
+                                Snacks
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Frozen">
+                                Frozen
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Condiments">
+                                Condiments
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                <li class="dropdown secondary-navlink-container">
-                    <a class=" btn text-light dropdown-toggle" asp-controller="Products" asp-action="Apparel" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                <li class="dropdown secondary-navlink-container true-nav-item">
+                    <a class=" btn text-light dropdown-toggle fw-bold" asp-controller="Products" asp-action="Apparel" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
                         Apparel
                     </a>
                     <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="apparelMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
@@ -65,41 +78,33 @@
                     </ul>
                 </li>
                
-                <li class=" dropdown secondary-navlink-container">
-                    <a class=" btn text-light dropdown-toggle" asp-controller="Products" asp-action="Grocery"    aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
-                            Grocery
-                        </a>
-                    <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark"  id="groceryMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
-                            <li class=" col-12">
-                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Produce">
-                                    Produce
-                                </a>
-                            </li>
+                <li class="dropdown secondary-navlink-container true-nav-item">
+                    <a class=" btn text-light dropdown-toggle fw-bold" asp-controller="Products" asp-action="Essentials" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        Essentials
+                    </a>
+                    <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="essentialsMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
                         <li class=" col-12">
-                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Pets">
-                               Pets
-                            </a>
-                        </li>
-                        <li class=" col-12">
-                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Snacks">
-                                Snacks
-                            </a>
-                        </li>
-                       <li class=" col-12">
-                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Frozen">
-                                Frozen
-                            </a>
-                        </li>
-                        <li class=" col-12">
-                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Condiments">
-                                Condiments
-                            </a>
-                        </li>
-                        </ul>                                                                             
-                </li>
 
-                <li class=" dropdown secondary-navlink-container">
-                    <a class=" btn text-light dropdown-toggle" asp-controller="Products" asp-action="Home" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Supplies">
+                                Supplies
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Electronics">
+                                Electronics
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Outdoors">
+                                Outdoors
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+                <li class=" dropdown secondary-navlink-container true-nav-item">
+                    <a class=" btn text-light dropdown-toggle fw-bold" asp-controller="Products" asp-action="Home" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
                         Home
                     </a>
                     <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="groceryMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
@@ -122,16 +127,116 @@
                         
                     </ul>
                 </li>
-                @*<li class="nav-item">
-                    <a class=" mynav-link" asp-controller="Products" asp-action="Index">
-                        Entertainment
+                @* --------------------------------- MOBILE NAV ITEMS --------------------------------------*@
+                <li class="dropdown secondary-navlink-container mobile-nav-item">
+                    <a class=" btn text-light  fw-bold" asp-controller="Products" asp-action="Apparel" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        Essentials
                     </a>
+                    <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="apparelMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        <li class=" col-12">
+
+                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Supplies">
+                                Supplies
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Electronics">
+                                Electronics
+                            </a>
+                        </li>
+
+
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a class=" mynav-link" asp-controller="Products" asp-action="Index">
-                        Outdoors
+                <li class="dropdown secondary-navlink-container mobile-nav-item">
+                    <a class=" btn text-light  fw-bold" asp-controller="Products" asp-action="Apparel" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        Apparel
                     </a>
-                </li>*@
+                    <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="apparelMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        <li class=" col-12">
+
+                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Womens">
+                                Women's
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Mens">
+                                Men's
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Shoe">
+                                Shoes
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Accessories">
+                                Accessories
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class=" dropdown secondary-navlink-container mobile-nav-item">
+                    <a class=" btn text-light  fw-bold" asp-controller="Products" asp-action="Grocery" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        Grocery
+                    </a>
+                    <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="groceryMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        <li class=" col-12">
+                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Produce">
+                                Produce
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Pets">
+                                Pets
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Snacks">
+                                Snacks
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Frozen">
+                                Frozen
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Condiments">
+                                Condiments
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class=" dropdown secondary-navlink-container mobile-nav-item">
+                    <a class=" btn text-light  fw-bold" asp-controller="Products" asp-action="Home" aria-expanded="false" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        Home
+                    </a>
+                    <ul class="secondary-dropdown navlink-dropdown dropdown-menu text-dark" id="groceryMenu" onmouseover="showdropdown(this)" onmouseleave="removedropdown(this)">
+                        <li class=" col-12">
+                            <a class="secondary-list-item " asp-controller="Products" asp-action="Category" asp-route-type="Decorations">
+                                Decorations
+                            </a>
+                        </li>
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Furniture">
+                                Furniture
+                            </a>
+                        </li>
+
+                        <li class=" col-12">
+                            <a class=" secondary-list-item" asp-controller="Products" asp-action="Category" asp-route-type="Candles">
+                                Candles
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
                </ul>
             
         </div>

@@ -10,8 +10,8 @@
     <div class="position-relative">
         <div class="product-overlay text d-flex justify-content-center align-items-center">
             <div class="overlay-text-container fit text-center">
-                <h1 style="font-size: 45px;" class="">Halloween Happenings</h1>
-                <p style="font-size: 20px;">The Perfect Halloween Decorations</p>
+                <h1 style="font-size: 45px;" class="">Essentials</h1>
+                <h2 >The essentials</h2>
                 <a asp-controller="Products" asp-action="Category" asp-route-type="Halloween" class="btn btn-light hero-button"> Shop Now</a>
             </div>
 
@@ -24,18 +24,25 @@
             <h1 class="fw-bold">Shop By Category</h1>
             <div class="product-circle">
                 <div class="d-flex justify-content-center">
-                    <a asp-controller="Products" asp-action="Category" asp-route-type="Supplies">
-                        <img class="" src="~/assets/Products/Home/decorations-circle.webp" />
-                        <h5 class="text-black text-center">Supplies</h5>
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="School">
+                        <img class="" src="~/assets/Products/Essentials/School/bic-pencils1.webp" />
+                        <h5 class="text-black text-center">School</h5>
                     </a>
                 </div>
             </div>
-
+            <div class="product-circle">
+                <div class="d-flex justify-content-center">
+                    <a asp-controller="Products" asp-action="Category" asp-route-type="Outdoors">
+                        <img class="" src="~/assets/Products/Essentials/Outdoors/tent1.webp" />
+                        <h5 class="text-black text-center">Outdoors</h5>
+                    </a>
+                </div>
+            </div>
            
             <div class="product-circle">
                 <div class="d-flex justify-content-center">
                     <a asp-controller="Products" asp-action="Category" asp-route-type="Electronics">
-                        <img class="" src="~/assets/Products/Home/furniture-circle.webp" />
+                        <img class="" src="~/assets/Products/Essentials/Electronics/tablet1.webp" />
                         <h5 class="text-black text-center">Electronics</h5>
                     </a>
                 </div>

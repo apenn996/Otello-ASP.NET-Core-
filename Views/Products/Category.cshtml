@@ -14,103 +14,80 @@
 
 
 
-@*@if(Model.UniqueName != null)
-{
-    @foreach (var lar in Model.UniqueName)
-    {
-        <h2>@lar</h2>
-    }
-}
-<h1 class="">@(ViewBag.bothGenders)</h1>*@
-<div class="col-12 d-flex justify-content-center @(Model.UniqueName != null && Model.UniqueName.Contains("Reebok") ? "" : "")">
+@{
+    var category = ViewBag.CategoryId;
+
+
     
-    <div class="container-fluid col-10  m-0 d-flex justify-content-center">
-        <div class="row col-12 mt-5">
-            <div class="filter-column col-3 p-4">
-                <div class="col-12 d-flex justify-content-center">
-                    <h2 class="text-white">Filter our selections</h2>
-                </div>
-                <div class="">
-                    <div class="p-2">
-                       
-                        <form asp-action="Category" asp-controller="Products" method="post">
-                            <h3>Filter to include:</h3>
-                            <div class="accordion myaccordian mb-4 mt-4" id="accordionPanelsStayOpenExample">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                                            <div class=" col-11 d-flex justify-content-between align-items-baseline">
+    var catString = category == 1 ? "Apparel" : category == 3 ? "Grocery" : category == 4 ? "Home" : category == 9 ? "Essentials" : "";
+}
+<div  class="col-12 d-flex flex-column align-items-center @(Model.UniqueName != null && Model.UniqueName.Contains("Reebok") ? "" : "")">
+    <div style="background-color: #f7f7f7;" class="path d-flex justify-content-center align-items-center col-12">
+        <ul class="d-flex mb-0 p-2" style="list-style-type: none; align-items:center;">
+
+            <li class="text-decoration-underline position-relative"><a class="path-link " asp-controller="Home" asp-action="Index"></a>Otello</li>
+            @if(!(catString == "")){
+                <li><h6>&nbsp; > &nbsp;</h6></li>
+                <li class="text-decoration-underline position-relative"><a class="path-link " asp-controller="Products" asp-action=@catString></a>@catString</li>
+            }
+           
+            <li><h6>&nbsp; > &nbsp;</h6></li>
+            <li class=" position-relative">@ViewBag.Type</li>
 
 
-                                                <h5 class="m-0">Brands</h5>
-                                            </div>
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse ">
-                                        <div class="accordion-body">
-                                            <div>
-                                                
+        </ul>
 
+    </div>
+    <div class="container-fluid col-11  m-0 d-flex justify-content-center flex-column align-items-center " >
+        
+        <h1 class="fw-bold mt-4 mb-5">@ViewBag.Type</h1>
+        @*<a class="btn btn-primary" id="filterCollapse" data-bs-toggle="collapse" href="#collapseFilter" role="button" aria-controls="collapseFilter">Filter Items</a>*@ 
 
-                                                @foreach (var checkbox in Model.Checkboxes)
-                                                {
-                                                    if (checkbox.Type =="Brands" && checkbox.Value != "" && checkbox.Value != null)
-                                                                                        {
-                                                        <ul>
+        <div class="category-body-container row col-12 pt-5 d-flex justify-content-center " >
+            
+                <div class="filter-column col-md-3 col-sm-9 col-12   " id="collapseFilter" >
+                    <div class="col-12 d-flex justify-content-center">
+                        <h2 class="text-white">Filter our selections</h2>
+                    </div>
+                    <div class="">
+                        <div class="p-2">
 
-                                                            <input type="checkbox"
-                                                                   value="@checkbox.Value"
-                                                                   name="UniqueName"
-                                                                   id="checkbox_@checkbox.Value"
-                                                                   checked="@(Model.UniqueName != null && Model.UniqueName.Contains(checkbox.Value) ? true : false)" />
-                                                            <label for="checkbox_@checkbox.Value">
-                                                                @checkbox.Description
-                                                            </label>
-                                                        </ul>
-                                                    }
-
-                                                }
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @if(ViewBag.Type == "Shoe" || ViewBag.Type == "Accessories" || ViewBag.type == "WinterWear")
-                                {
+                            <form asp-action="Category" asp-controller="Products" method="post">
+                                <h3>Filter to include:</h3>
+                                <div class="accordion myaccordian mb-4 mt-4" id="accordionPanelsStayOpenExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
                                                 <div class=" col-11 d-flex justify-content-between align-items-baseline">
 
 
-                                                    <h5 class="m-0">Gender</h5>
+                                                    <h5 class="m-0">Brands</h5>
                                                 </div>
                                             </button>
                                         </h2>
-                                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse ">
                                             <div class="accordion-body">
-                                                <div class="mt-3">
-                                                    @if (ViewBag.Type != "Mens")
+                                                <div>
+
+
+
+                                                    @foreach (var checkbox in Model.Checkboxes)
                                                     {
-
-                                                        @foreach (var checkbox in Model.Checkboxes)
+                                                        if (checkbox.Type == "Brands" && checkbox.Value != "" && checkbox.Value != null)
                                                         {
-                                                            if (checkbox.Type == "Gender")
-                                                            {
-                                                                <ul>
-                                                                    <input type="checkbox"
-                                                                           value="@checkbox.Value"
-                                                                           name="UniqueName"
-                                                                           id="checkbox_@checkbox.Value"
-                                                                           checked="@(Model.UniqueName != null && Model.UniqueName.Contains(checkbox.Value) ? true : false)" />
-                                                                    <label for="checkbox_@checkbox.Value">
-                                                                        @checkbox.Description
-                                                                    </label>
-                                                                </ul>
+                                                            <ul class="p-0">
 
-                                                            }
+                                                                <input type="checkbox"
+                                                                       value="@checkbox.Value"
+                                                                       name="UniqueName"
+                                                                       id="checkbox_@checkbox.Value"
+                                                                       checked="@(Model.UniqueName != null && Model.UniqueName.Contains(checkbox.Value) ? true : false)" />
+                                                                <label for="checkbox_@checkbox.Value">
+                                                                    @checkbox.Description
+                                                                </label>
+                                                            </ul>
                                                         }
+
                                                     }
 
 
@@ -118,114 +95,164 @@
                                             </div>
                                         </div>
                                     </div>
-                                }
-                                
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                            <div class=" col-11 d-flex justify-content-between align-items-baseline">
+                                    @if (ViewBag.Type == "Shoe" || ViewBag.Type == "Accessories" || ViewBag.type == "WinterWear")
+                                    {
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                                                    <div class=" col-11 d-flex justify-content-between align-items-baseline">
 
 
-                                                <h5 class="m-0">Price</h5>
-                                            </div>
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                                        <div class="accordion-body">
-                                            <div class="mt-3">
-                                               
-                                                <div class="mt-3">
-                                                    <div class="slidecontainer">
-                                                        <label for="maxslider">Max Price: $<p class="d-inline" id="demo1"></p> </label>
-                                                        <input type="range" min="@ViewBag.MinPrice" max="@Model.MaxPrice" value="@ViewBag.chosenMax" name="maxslider" class="slider" id="maxRange">
+                                                        <h5 class="m-0">Gender</h5>
+                                                    </div>
+                                                </button>
+                                            </h2>
+                                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                                                <div class="accordion-body">
+                                                    <div class="mt-3">
+                                                        @if (ViewBag.Type != "Mens")
+                                                        {
 
+                                                            @foreach (var checkbox in Model.Checkboxes)
+                                                            {
+                                                                if (checkbox.Type == "Gender")
+                                                                {
+                                                                    <ul class="p-0">
+                                                                        <input type="checkbox"
+                                                                               value="@checkbox.Value"
+                                                                               name="UniqueName"
+                                                                               id="checkbox_@checkbox.Value"
+                                                                               checked="@(Model.UniqueName != null && Model.UniqueName.Contains(checkbox.Value) ? true : false)" />
+                                                                        <label for="checkbox_@checkbox.Value">
+                                                                            @checkbox.Description
+                                                                        </label>
+                                                                    </ul>
 
-                                                        <label class="d-block" for="minslider">Min Price: $<p class="d-inline" id="demo2"></p></label>
-                                                        <input type="range" min="@Model.MinPrice" max="@Model.MaxPrice" value="@ViewBag.chosenMin" name="minslider" class="slider" id="minRange">
-
-                                                        <script type="text/javascript">
-                                                            var slider1 = document.getElementById("maxRange");
-                                                            var output1 = document.getElementById("demo1");
-                                                            var slider2 = document.getElementById("minRange");
-                                                            var output2 = document.getElementById("demo2");
-                                                            output1.innerHTML = slider1.value; // Display the default slider value
-                                                            output2.innerHTML = slider2.value;
-
-
-                                                            // Update the current slider value (each time you drag the slider handle)
-                                                            slider1.oninput = function () {
-                                                                output1.innerHTML = this.value;
+                                                                }
                                                             }
-                                                            slider2.oninput = function () {
-                                                                output2.innerHTML = this.value;
-                                                            }
-                                                        </script>
+                                                        }
 
 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                            <div class=" col-11 d-flex justify-content-between align-items-baseline">
+                                    }
+
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                                <div class=" col-11 d-flex justify-content-between align-items-baseline">
 
 
-                                                <h5 class="m-0">Groupings</h5>
+                                                    <h5 class="m-0">Price</h5>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                                            <div class="accordion-body">
+                                                <div class="mt-3">
+
+                                                    <div class="mt-3">
+                                                        <div class="slidecontainer">
+                                                            <label for="maxslider">Max Price: $<p class="d-inline" id="demo1"></p> </label>
+                                                            <input type="range" min="@ViewBag.MinPrice" max="@Model.MaxPrice" value="@ViewBag.chosenMax" name="maxslider" class="slider" id="maxRange">
+
+
+                                                            <label class="d-block" for="minslider">Min Price: $<p class="d-inline" id="demo2"></p></label>
+                                                            <input type="range" min="@Model.MinPrice" max="@Model.MaxPrice" value="@ViewBag.chosenMin" name="minslider" class="slider" id="minRange">
+
+                                                            <script type="text/javascript">
+                                                                var slider1 = document.getElementById("maxRange");
+                                                                var output1 = document.getElementById("demo1");
+                                                                var slider2 = document.getElementById("minRange");
+                                                                var output2 = document.getElementById("demo2");
+                                                                output1.innerHTML = slider1.value; // Display the default slider value
+                                                                output2.innerHTML = slider2.value;
+
+
+                                                                // Update the current slider value (each time you drag the slider handle)
+                                                                slider1.oninput = function () {
+                                                                    output1.innerHTML = this.value;
+                                                                }
+                                                                slider2.oninput = function () {
+                                                                    output2.innerHTML = this.value;
+                                                                }
+                                                            </script>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
-                                        <div class="accordion-body">
-                                            <div class="mt-3">
-                                                @foreach (var checkbox in Model.Checkboxes)
-                                                {
-                                                    if (checkbox.Type == "Groupings" && checkbox.Value != "" && checkbox.Value != null)
-                                                    {
-                                                        <ul>
-                                                            <input type="checkbox"
-                                                                   value="@checkbox.Value"
-                                                                   name="UniqueName"
-                                                                   id="checkbox_@checkbox.Value"
-                                                                   checked="@(Model.UniqueName != null && Model.UniqueName.Contains(checkbox.Value) ? true : false)" />
-                                                            <label for="checkbox_@checkbox.Value">
-                                                                @checkbox.Description
-                                                            </label>
-                                                        </ul>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                                <div class=" col-11 d-flex justify-content-between align-items-baseline">
 
+
+                                                    <h5 class="m-0">Groupings</h5>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                                            <div class="accordion-body">
+                                                <div class="mt-3">
+                                                    @foreach (var checkbox in Model.Checkboxes)
+                                                    {
+                                                        if (checkbox.Type == "Groupings" && checkbox.Value != "" && checkbox.Value != null)
+                                                        {
+                                                            <ul class="p-0">
+                                                                <input type="checkbox"
+                                                                       value="@checkbox.Value"
+                                                                       name="UniqueName"
+                                                                       id="checkbox_@checkbox.Value"
+                                                                       checked="@(Model.UniqueName != null && Model.UniqueName.Contains(checkbox.Value) ? true : false)" />
+                                                                <label for="checkbox_@checkbox.Value">
+                                                                    @checkbox.Description
+                                                                </label>
+                                                            </ul>
+
+                                                        }
                                                     }
-                                                }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                           
-                    
-                            
-                                
-                            
-                            <div class="d-flex col-12 justify-content-end mt-3">
-                                <button class="filter-button btn btn-primary" type="submit">
-                                    Update
-                                </button>
-                            </div>
-                            
-                        </form>
-                        
-                        
-                        @* <h3>Brand</h3>
+
+
+
+
+
+                                <div class="d-flex col-12 justify-content-end mt-3">
+                                    <button class="filter-button btn btn-primary" type="submit">
+                                        Update
+                                    </button>
+                                </div>
+
+                            </form>
+
+
+                            @* <h3>Brand</h3>
                          <input type="checkbox" id="nike" name="nike"  />
                          <label for="nike">Nike</label>
                          <input type="checkbox" id="reebok" name="reebok" />
                          <label for="reebok">Reebok</label> *@
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="product-column col-9 d-flex justify-content-evenly flex-wrap">
+
+           
+           
+            @{
+                int resultCount=0;
+            }
+            <div class="product-column col-md-9 col-12 d-flex justify-content-start flex-wrap position-relative">
+                <hr class="col-12" />
+               
                 @foreach (var productImage in Model.ProductImagesModel)
                 {
                    
@@ -258,18 +285,19 @@
                                             {
                                                 if (productImage2.ProductId == product.Id)
                                                     imageList.Add(productImage2.Image1.ToString());
-                                            }
-                                            var json = JsonConvert.SerializeObject(imageList.ToArray());
-                                            imageList.Clear();
-                                           
-                                            <div class="product-card fit text  m-2 p-0 overflow-hidden">
+                                                }
+                                                var json = JsonConvert.SerializeObject(imageList.ToArray());
+                                                imageList.Clear();
+                                                
+                                                <div class="product-card fit text   overflow-hidden">
 
                                                 <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
-
+                                                       
                                                     <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
                                                         @{
+                                                            resultCount++;
                                                             int ratingCount = 0;
                                                             float ratingTotal = 0;
                                                             float averageRating = 0;
@@ -335,14 +363,15 @@
                                             var json = JsonConvert.SerializeObject(imageList.ToArray());
                                             imageList.Clear();
 
-                                            <div class="product-card fit text  m-2 p-0 overflow-hidden">
+                                            <div class="product-card fit text   overflow-hidden">
 
                                                 <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
-
+                                                        
                                                     <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
                                                         @{
+                                                                resultCount++;
                                                             int ratingCount = 0;
                                                             float ratingTotal = 0;
                                                             float averageRating = 0;
@@ -411,14 +440,15 @@
                                             imageList.Clear();
                                            
 
-                                            <div class="product-card fit text  m-2 p-0 overflow-hidden">
+                                            <div class="product-card fit text  overflow-hidden">
 
                                                 <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
-
+                                                        
                                                     <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
                                                         @{
+                                                            resultCount++;
                                                             int ratingCount = 0;
                                                             float ratingTotal = 0;
                                                             float averageRating = 0;
@@ -495,14 +525,15 @@
                                     imageList.Clear();
                                    
 
-                                    <div class="product-card fit text  m-2 p-0 overflow-hidden" >
+                                    <div class="product-card fit text   overflow-hidden" >
 
                                         <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
-
+                                                
                                             <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price) </p>
                                                 @{
+                                                        resultCount++;
                                                     int ratingCount = 0;
                                                     float ratingTotal = 0;
                                                     float averageRating = 0;
@@ -592,14 +623,15 @@
                                                 var json = JsonConvert.SerializeObject(imageList.ToArray());
                                                 imageList.Clear();
 
-                                                <div class="product-card fit text  m-2 p-0 overflow-hidden">
+                                                <div class="product-card fit text   overflow-hidden">
 
                                                     <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
-
+                                                        
                                                         <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
                                                             @{
+                                                                resultCount++;
                                                                 int ratingCount = 0;
                                                                 float ratingTotal = 0;
                                                                 float averageRating = 0;
@@ -667,14 +699,15 @@
                                                 var json = JsonConvert.SerializeObject(imageList.ToArray());
                                                 imageList.Clear();
 
-                                                <div class="product-card fit text  m-2 p-0 overflow-hidden">
+                                                <div class="product-card fit text   overflow-hidden">
 
                                                     <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
-
+                                                        
                                                         <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
                                                             @{
+                                                                resultCount++;
                                                                 int ratingCount = 0;
                                                                 float ratingTotal = 0;
                                                                 float averageRating = 0;
@@ -743,14 +776,15 @@
                                                 imageList.Clear();
 
 
-                                                <div class="product-card fit text  m-2 p-0 overflow-hidden">
+                                                <div class="product-card fit text   overflow-hidden">
 
                                                     <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
-
+                                                       
                                                         <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
                                                             @{
+                                                                resultCount++;
                                                                 int ratingCount = 0;
                                                                 float ratingTotal = 0;
                                                                 float averageRating = 0;
@@ -824,14 +858,15 @@
                                         imageList.Clear();
                                         
 
-                                        <div class="product-card fit text  m-2 p-0 overflow-hidden">
+                                        <div class="product-card fit text   overflow-hidden">
 
                                             <a class="text-black product-link plain-link" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@product.Id">
-
+                                              
                                                 <img onmouseout="stopCycle(this, @(json))" onmouseover="cycleVariants(this, @(json))" class="product-image" src="@(productImage.Image1)" alt="product image for " />
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <p class=" mb-0 fs-5 fw-bold background-secondary">$@(product.Price)</p>
                                                     @{
+                                                        resultCount++;
                                                         int ratingCount = 0;
                                                         float ratingTotal = 0;
                                                         float averageRating = 0;
@@ -900,7 +935,8 @@
 
                     }
                 }
-               
+                <h5 class="position-absolute fw-bold " style="top:-6px; left: 14px;">@resultCount results</h5>
+                
             </div>
 
         </div>

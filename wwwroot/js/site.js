@@ -84,19 +84,33 @@ var myFunc = function () {
    
     var currentScroll = this.scrollLeft;
     console.log(currentScroll);
-    console.log(this.scrollWidth - this.clientWidth);
+    console.log(this.scrollWidth - this.clientWidth - this.scrollLeft);
     leftButton = this.parentNode.querySelector(".left");
     rightButton = this.parentNode.querySelector(".right");
-    if (currentScroll === 0 ) {
-            leftButton.setAttribute("disabled", "true");
-            leftButton.style.visibility = "hidden";
-            rightButton.removeAttribute("disabled");
-        } else if (currentScroll + 3 >= this.scrollWidth - this.clientWidth) {
+    
+    if (this.scrollLeft === 0 && this.scrollWidth === this.clientWidth) {
+        //when list has scroll at scroll position 0
+        rightButton.setAttribute("disabled", "true");
+        leftButton.setAttribute("disabled", "true");
+        leftButton.style.visibility = "hidden";
+        rightButton.style.visibility = "hidden";
+    
+    } else if (currentScroll === 0 && this.scrollLeft >= 0) {
+        //when list has no scroll
+        leftButton.setAttribute("disabled", "true");
+        leftButton.style.visibility = "hidden";
+        rightButton.removeAttribute("disabled");
+        rightButton.style.visibility = "visible";
+       
+
+    } else if (currentScroll + 3 >= this.scrollWidth - this.clientWidth) {
+            // when list is fully scrolled
             rightButton.setAttribute("disabled", "true");
             leftButton.removeAttribute("disabled");
 
             rightButton.style.visibility = "hidden";
-        } else {
+        } 
+        else {
             leftButton.removeAttribute("disabled");
             leftButton.style.visibility = "visible";
             rightButton.removeAttribute("disabled");

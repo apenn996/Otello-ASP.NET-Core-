@@ -3,159 +3,162 @@
 @inject UserManager<IdentityUser> UserManager
 
 @{
-	ViewData["Title"] = "Your Cart";
-	bool first = true;
-	double CartPrice = 0;
-	int cartLength = 0;
-	var shoppingCartId = 0;
-	var productId = 0 ;
+    ViewData["Title"] = "Your Cart";
+    bool first = true;
+    double CartPrice = 0;
+    int cartLength = 0;
+    var shoppingCartId = 0;
+    var productId = 0;
 }
 
 
-@if (SignInManager.IsSignedIn(User)  )
+@if (SignInManager.IsSignedIn(User))
 {
-	
-					
-				
-	<div style="margin-top: 60px;" class="container-fluid col-10 ">
-		<div class="row d-flex">
-			<div style="background-color: #f6f6f6;" class="col-8 p-5">
 
 
-				@foreach (ShoppingCart shoppingCart in ViewBag.ShoppingCartModel)
-				{
-					if (shoppingCart.UserId == User.Identity?.Name)
-					{
-						<div class="row cart-item">
-							@{
-								CartPrice += shoppingCart.TotalCost * shoppingCart.Quantity;
-								cartLength++;
-							}
-							@if (shoppingCart.UserId == User.Identity?.Name)
-							{
-								@foreach (ProductVariations productVariation in ViewBag.Pe)
-								{
-									@foreach (ProductImages item2 in ViewBag.ProductImagesModel)
-									{
-										if (item2.ProductId == productVariation.productId && shoppingCart.VariationId == productVariation.Id && item2.colorId == productVariation.colorId)
-										{
-											<div class="col-3 ">
-												<img class="cart-image " src="@(item2.Image1)" />
-											</div>
-										}
-									}
-								}
-								@foreach (ProductVariations productVariation in ViewBag.Pe)
-								{
-									if (productVariation.Id == shoppingCart.VariationId)
-									{
-										@foreach (Product product in ViewBag.ProductModel)
-										{
-											@foreach (ProductColors color in ViewBag.ColorModel)
-											{
-												@foreach (ProductSizes size in ViewBag.SizeModel)
-												{
-													if (product.Id == productVariation.productId && productVariation.colorId == color.Id && productVariation.sizeId == size.Id)
-													{
 
-														<div class="col-8 position-relative">
-															<a class="text-decoration-none text-black" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@(product.Id)" asp-route-colorId="@(productVariation.colorId)" asp-route-sizeId="@(productVariation.sizeId)" asp-route-variationId="@(productVariation.Id)" asp-route-quantity="1">
-																<h2 class="mb-4">@(product.Name)</h2>
-															</a>
+    <div style="padding-top: 60px;" class="container-fluid col-lg-10 col-12 ">
+        <div class="shopping-container row d-flex ">
+            <div style="background-color: #f6f6f6;" class="col-md-8 col-12 p-5 d-flex flex-column">
 
-															@* <h5>@(product.Id)</h5> *@
-															@{
 
-																var stock = (product.Stock > 30) ? "text-success" : (product.Stock > 15) ? "text-warning" : "text-danger";
-															}
-															<h6 class="@stock">@(product.Stock) left in stock</h6>
-															<h5><span class="fw-bold">Brand:</span> @(product.Brand)</h5>
-															<h5><span class="fw-bold">Item:</span> @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : (product.Sex == 'U') ? "Unisex" : "") @(product.Type) @((product.Grouping != null) ? " - " + product.Grouping : "")</h5>
-															<h5><span class="fw-bold">Style:</span>  @(color.Color) - <span class="fw-bold">Size:</span> @(size.Size)</h5>
-															<div  class="position-absolute ">
-																@*<a asp-action="Edit" asp-route-id="@shoppingCart.Id">Edit</a> |
+                @foreach (ShoppingCart shoppingCart in ViewBag.ShoppingCartModel)
+                {
+                    if (shoppingCart.UserId == User.Identity?.Name)
+                    {
+                        <div class=" cart-item d-flex">
+                            <div class="col-md-10 col-11  d-flex">
+                                @{
+                                    CartPrice += shoppingCart.TotalCost * shoppingCart.Quantity;
+                                    cartLength++;
+                                }
+                                @if (shoppingCart.UserId == User.Identity?.Name)
+                                {
+                                    @foreach (ProductVariations productVariation in ViewBag.Pe)
+                                    {
+                                        @foreach (ProductImages item2 in ViewBag.ProductImagesModel)
+                                        {
+                                            if (item2.ProductId == productVariation.productId && shoppingCart.VariationId == productVariation.Id && item2.colorId == productVariation.colorId)
+                                            {
+                                                <div class="col-md-4 col-12 ">
+                                                    <img class="cart-image " src="@(item2.Image1)" />
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                    @foreach (ProductVariations productVariation in ViewBag.Pe)
+                                    {
+                                        if (productVariation.Id == shoppingCart.VariationId)
+                                        {
+                                            @foreach (Product product in ViewBag.ProductModel)
+                                            {
+                                                @foreach (ProductColors color in ViewBag.ColorModel)
+                                                {
+                                                    @foreach (ProductSizes size in ViewBag.SizeModel)
+                                                    {
+                                                        if (product.Id == productVariation.productId && productVariation.colorId == color.Id && productVariation.sizeId == size.Id)
+                                                        {
+
+                                                            <div class="col-md-7 col-12 position-relative">
+                                                                <a class="text-decoration-none text-black" asp-action="ProductDisplay" asp-controller="Products" asp-route-id="@(product.Id)" asp-route-colorId="@(productVariation.colorId)" asp-route-sizeId="@(productVariation.sizeId)" asp-route-variationId="@(productVariation.Id)" asp-route-quantity="1">
+                                                                    <h2 class="mb-4">@(product.Name)</h2>
+                                                                </a>
+
+                                                                @* <h5>@(product.Id)</h5> *@
+                                                                @{
+
+                                                                    var stock = (product.Stock > 30) ? "text-success" : (product.Stock > 15) ? "text-warning" : "text-danger";
+                                                                }
+                                                                <h6 class="@stock">@(product.Stock) left in stock</h6>
+                                                                <h5><span class="fw-bold">Brand:</span> @(product.Brand)</h5>
+                                                                <h5><span class="fw-bold">Item:</span> @((product.Sex == 'M') ? "Men's" : (product.Sex == 'W') ? "Women's" : (product.Sex == 'U') ? "Unisex" : "") @(product.Type) @((product.Grouping != null) ? " - " + product.Grouping : "")</h5>
+                                                                <h5><span class="fw-bold">Style:</span>  @(color.Color) - <span class="fw-bold">Size:</span> @(size.Size)</h5>
+                                                                <div class="position-absolute ">
+                                                                    @*<a asp-action="Edit" asp-route-id="@shoppingCart.Id">Edit</a> |
 																<a asp-action="Details" asp-route-id="@shoppingCart.Id">Details</a> | *@
-																<a type="button" class=" " data-bs-toggle="modal" data-bs-target="#deleteModal@(shoppingCart.Id)">
-																	Delete
-																</a>
-																<div class="modal fade" id="deleteModal@(shoppingCart.Id)" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-																	<div class="modal-dialog modal-dialog-centered">
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<h1 class="modal-title fs-5" id="deleteModalLabel">Order Deletion</h1>
-																				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																			</div>
-																			<div class="modal-body">
-																				<p>Are you sure you want to remove</p>
-																				<ul>
-																					<li>
-																								<p>@product.Name - (@shoppingCart.Quantity)</p>
+                                                                    <a type="button" class=" " data-bs-toggle="modal" data-bs-target="#deleteModal@(shoppingCart.Id)">
+                                                                        Delete
+                                                                    </a>
+                                                                    <div class="modal fade" id="deleteModal@(shoppingCart.Id)" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-dialog-centered">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h1 class="modal-title fs-5" id="deleteModalLabel">Order Deletion</h1>
+                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p>Are you sure you want to remove</p>
+                                                                                    <ul>
+                                                                                        <li>
+                                                                                            <p>@product.Name - (@shoppingCart.Quantity)</p>
 
-																					</li>
-																				</ul>
+                                                                                        </li>
+                                                                                    </ul>
 
-																				<p> from your cart?</p>
-																			</div>
-																			<div class="modal-footer">
-																				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-																				<a type="button" class="btn btn-danger" asp-controller="ShoppingCart" asp-action="Delete" asp-route-id="@shoppingCart.Id" asp-route-pId="@product.Id">Delete</a>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																	
-																
-																
-															</div>
-
-														</div>
-													}
-												}
-											}
-										}
-									}
-								}
-
-								<div class="text-end col-1  position-relative m-0 p-0">
-									@{
-										var displayCost = shoppingCart.TotalCost * shoppingCart.Quantity;
-									}
-									<small>@shoppingCart.TotalCost X @shoppingCart.Quantity =</small><h2> $@displayCost</h2>
-									@if (first)
-									{
-										<h6 style="position: absolute; top: -40px; right: 0px;">Price</h6>
-										first = false;
-									}
-
-								</div>
-							}
-						</div>
-					}
-					
-				}
-				
-				
-
-			</div>
-			<div class="cart-summary col-4">
-				<div style="background-color: #f6f6f6;" class=" p-4 ">
-					<h2 class="mb-3">Your Summary</h2>
-					<h5>Number of items: @(cartLength)</h5>					
-					<h5 class="">Subtotal: $@(CartPrice = Math.Truncate(100 * CartPrice) / 100)</h5>
-					<button type="button" class="btn checkout-button mt-4" onclick="">
-						<h5 class="text-black fs-6 m-0">Proceed to checkout</h5>
-					</button>
-				</div>
-
-			</div>
+                                                                                    <p> from your cart?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                                                    <a type="button" class="btn btn-danger" asp-controller="ShoppingCart" asp-action="Delete" asp-route-id="@shoppingCart.Id" asp-route-pId="@product.Id">Delete</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
 
 
-		</div>
+                                                                </div>
 
-	</div>
+                                                            </div>
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }   }
+                            </div>
+                            <div class="text-end col-sm-1 col-12 position-relative m-0 p-0">
+                                @{
+                                    var displayCost = shoppingCart.TotalCost * shoppingCart.Quantity;
+                                }
+                                <small>@shoppingCart.TotalCost X @shoppingCart.Quantity =</small><h2> $@displayCost</h2>
+                                @if (first)
+                                {
+                                    <h6 style="position: absolute; top: -40px; right: 0px;">Price</h6>
+                                    first = false;
+                                }
+
+                            </div>
+
+
+                        </div>
+
+                    }
+
+                }
+
+
+
+            </div>
+            <div class="cart-summary col-md-4 col-12">
+                <div style="background-color: #f6f6f6;" class=" p-4 ">
+                    <h2 class="mb-3">Your Summary</h2>
+                    <h5>Number of items: @(cartLength)</h5>
+                    <h5 class="">Subtotal: $@(CartPrice = Math.Truncate(100 * CartPrice) / 100)</h5>
+                    <button type="button" class="btn checkout-button mt-4" onclick="">
+                        <h5 class="text-black fs-6 m-0">Proceed to checkout</h5>
+                    </button>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
 }
 else
 {
-	<h2>not logged in</h2>
+    <h2>not logged in</h2>
 }
