@@ -102,6 +102,8 @@ namespace Otello.Controllers
             model.chosenMin = ViewBag.chosenMin;
 
             var productForType = db.Product.FirstOrDefault(s => s.Type == type);
+            if (productForType == null)
+                productForType = db.Product.FirstOrDefault(s => s.Grouping == type);
             System.Diagnostics.Debug.WriteLine("THIS IS A TEST FOR THE CATEGORY ID: " + productForType.CategoryId);
             ViewBag.CategoryId = productForType.CategoryId;
 

@@ -13,7 +13,7 @@ namespace Otello.Data
         public DbSet<Otello.Models.Product>? Product { get; set; }
         public DbSet<Otello.Models.ProductImages>? ProductImages { get; set; }
         public DbSet<Otello.Models.ProductReviews>? ProductReviews { get; set; }
-        public DbSet<Otello.Models.test>? test { get; set; }
+        
         public DbSet<Otello.Models.ShoppingCart>? ShoppingCart { get; set; }
         public DbSet<Otello.Models.ProductCategories>? ProductCategories { get; set; }
         public DbSet<Otello.Models.ProductVariations>? ProductVariations { get; set; }

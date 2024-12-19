@@ -149,56 +149,9 @@ namespace Otello.Controllers
             return View(shoppingCart);
         }
 
-        // GET: ShoppingCart/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || db.ShoppingCart == null)
-            {
-                return NotFound();
-            }
-
-            var shoppingCart = await db.ShoppingCart.FindAsync(id);
-            if (shoppingCart == null)
-            {
-                return NotFound();
-            }
-            return View(shoppingCart);
-        }
-
-        // POST: ShoppingCart/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Quantity,ProductId,TotalCost")] ShoppingCart shoppingCart)
-        {
-            if (id != shoppingCart.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Update(shoppingCart);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ShoppingCartExists(shoppingCart.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(shoppingCart);
-        }
+      
+       
+        
 
         // GET: ShoppingCart/Delete/5
         public async Task<IActionResult> Delete(int? id, int pId)

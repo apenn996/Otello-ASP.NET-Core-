@@ -19,7 +19,7 @@
 
     <div style="padding-top: 60px;" class="container-fluid col-lg-10 col-12 ">
         <div class="shopping-container row d-flex ">
-            <div style="background-color: #f6f6f6;" class="col-md-8 col-12 p-5 d-flex flex-column">
+            <div style="background-color: #f5f5f5;" class="col-md-8 col-12 p-5 d-flex flex-column">
 
 
                 @foreach (ShoppingCart shoppingCart in ViewBag.ShoppingCartModel)
@@ -141,13 +141,13 @@
 
             </div>
             <div class="cart-summary col-md-4 col-12">
-                <div style="background-color: #f6f6f6;" class=" p-4 ">
+                <div style="background-color:  #f5f5f5;" class=" p-4 ">
                     <h2 class="mb-3">Your Summary</h2>
                     <h5>Number of items: @(cartLength)</h5>
                     <h5 class="">Subtotal: $@(CartPrice = Math.Truncate(100 * CartPrice) / 100)</h5>
-                    <button type="button" class="btn checkout-button mt-4" onclick="">
+                    @*<button type="button" class="btn checkout-button mt-4" onclick="">
                         <h5 class="text-black fs-6 m-0">Proceed to checkout</h5>
-                    </button>
+                    </button>*@
                 </div>
 
             </div>

@@ -6,10 +6,22 @@
     List<string> brandFilter = new List<string>();
     List<string> imageList = new List<string>();
 }
+<div class="position-relative col-12 overflow-hidden">
+    <div class="product-overlay-index text d-flex justify-content-center align-items-center text-dark" >
+        <div class="overlay-text-container text-center" style="right: 0px;">
+            <h1 style="font-size: 45px;" class="">Shop for your holiday</h1>
+            <h2>Enjoy a 25% dicount on select holiday items.</h2>
+        </div>
 
+    </div>
+    <img style="min-width: 100%; height: 500px; object-fit: cover; object-position: 0% 0%" src="~/assets/thumbnails/holiday.jpg" />
+</div>
 <div id="scroll-wrapper" class="container-fluid col-11 col-sm-9  pt-5">
+    
+
     <div class="row justify-content-center " >
-        <div class="deals-grid">
+        <h3 class="left-pad pb-0 fw-bold">Shop everything</h3>
+        <div class="deals-grid" style="padding-top: 15px;">
             <div class="deals-grid-item gitem-1">
              <a class="fill position-relative text-decoration-none text-dark " asp-controller="Products" asp-action="Category" asp-route-type="Electronics">
 
@@ -94,8 +106,8 @@
         </div>
     
     <div class="row mt-5 ">
-        <h3 class="my-pad pb-0 fw-bold">Get ready for the big game</h3>
-        <h6 class="mypad">Chips and quick meals.</h6>
+        <h3 class="left-pad pb-0 fw-bold">Get ready for the big game</h3>
+        <h6 class="left-pad">Chips and quick meals.</h6>
         <div class="cover">
             <button class="left" onclick="leftScroll(this)">
                 <div class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
@@ -167,8 +179,8 @@
     </div>
     <hr />
     <div class="row mt-4 mb-5 ">
-        <h3 class="my-pad pb-0 fw-bold">Fruits & Veggies</h3>
-        <h6 class="my-pad">Our freshset produce, healthy for the whole family.</h6>
+        <h3 class="left-pad pb-0 fw-bold">Fruits & Veggies</h3>
+        <h6 class="left-pad">Our freshset produce, healthy for the whole family.</h6>
         <div class="cover ">
             <button class="left" onclick="leftScroll(this)">
                 <div class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">
@@ -340,7 +352,8 @@
         </div>
         </div>
         <div class="row mt-5 mb-5 ">
-            <h3 class="my-pad pb-0 fw-bold">Flavor's favor</h3>
+            <h3 class="left-pad pb-0 fw-bold">Flavor's favor</h3>
+             <h6 class="left-pad">Spice up any meal with our selection.  </h6>
             <div class="cover ">
                 <button class="left" onclick="leftScroll(this)">
                     <div  class="scroll-arrow-container dim d-flex justify-content-center align-items-center m-0 p-0">

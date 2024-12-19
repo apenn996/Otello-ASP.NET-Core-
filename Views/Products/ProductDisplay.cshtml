@@ -369,7 +369,7 @@
 									if (productVariation.Id == ViewBag.vId && productVariation.colorId == ViewBag.ColorId && productVariation.sizeId == ViewBag.SizeId)
 									{
 										<a class="tocart-button mt-4" asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-quantity="@ViewBag.quantity" asp-route-variationId="@(productVariation.Id)" asp-route-totalCost="@(product.Price)" asp-route-cartItemId="@(product.Id)" asp-route-cId="@(ViewBag.ColorId)" asp-route-sId="@(ViewBag.SizeId)" asp-route-vId="@(ViewBag.vId)" onclick="">
-											<p class="text-black fs-6 mb-0">Add to Cart</p>
+											<p class="text-light fs-6 mb-0">Add to Cart</p>
 										</a>
 									}
 

@@ -24,7 +24,7 @@
             </ul>
             <a class="cart-link navlink-container nav-link text-light position-relative d-flex justify-content-center align-items-center" asp-controller="ShoppingCart" asp-action="Index">
                 <img id="shoppingCart" src="~/assets/cart-light.png" alt="shopping cart image">
-                <div class="d-flex justify-content-center align-items-center" id="shoppingCartQuantity">
+                <div class="d-flex justify-content-center align-items-center bg-dark" id="shoppingCartQuantity">
                    
                          @if (SignInManager.IsSignedIn(User))
                         {
@@ -36,11 +36,11 @@
                                         cartSize++;
                                     }
                             }
-                        <p class="fs-6 text-center mb-0 ">@(cartSize)</p>
+                        <p class="fs-6 text-center mb-0 text-light ">@(cartSize)</p>
                         }
                         else
                         {
-                            <p class="fs-6 text-center mb-0 ">0</p>
+                        <p class="fs-6 text-center mb-0 text-light ">0</p>
                         } 
                     
                             

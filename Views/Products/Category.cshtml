@@ -276,11 +276,12 @@
                                     List<string> uniqueproduct = new List<string>();
                                     @foreach (var item in Model.UniqueName)
                                     {
-
+                                        
 
 
                                         if (item == product.Brand)
                                         {
+                                                uniqueproduct.Add(product.Id.ToString());
                                             @foreach (var productImage2 in Model.ProductImagesModel)
                                             {
                                                 if (productImage2.ProductId == product.Id)
@@ -353,8 +354,9 @@
                                                 </a>
                                             </div>
                                         }
-                                        if (item == product.Grouping)
+                                        if (item == product.Grouping && !uniqueproduct.Contains(product.Id.ToString()))
                                         {
+                                                uniqueproduct.Add(product.Id.ToString());
                                             @foreach (var productImage2 in Model.ProductImagesModel)
                                             {
                                                 if (productImage2.ProductId == product.Id)
@@ -431,6 +433,7 @@
                                         }
                                         if (item.Equals(product.Sex.ToString()) && !uniqueproduct.Contains(product.Id.ToString()))
                                         {
+                                                uniqueproduct.Add(product.Id.ToString());
                                             @foreach (var productImage2 in Model.ProductImagesModel)
                                             {
                                                 if (productImage2.ProductId == product.Id)
@@ -595,7 +598,8 @@
 
 
                 }
-                        }else{
+                        }
+                        else{
                             if (productImage.ProductId == product.Id && productImage.Id > 0 && product.Grouping == ViewBag.Type && productImage.variant == false)
                             {
 
@@ -615,6 +619,7 @@
 
                                             if (item == product.Brand)
                                             {
+                                                uniqueproduct.Add(product.Id.ToString());
                                                 @foreach (var productImage2 in Model.ProductImagesModel)
                                                 {
                                                     if (productImage2.ProductId == product.Id)
@@ -689,8 +694,9 @@
                                                     </a>
                                                 </div>
                                             }
-                                            if (item == product.Grouping)
+                                            if (item == product.Grouping && !uniqueproduct.Contains(product.Id.ToString()))
                                             {
+                                                uniqueproduct.Add(product.Id.ToString());
                                                 @foreach (var productImage2 in Model.ProductImagesModel)
                                                 {
                                                     if (productImage2.ProductId == product.Id)
@@ -767,6 +773,7 @@
                                             }
                                             if (item.Equals(product.Sex.ToString()) && !uniqueproduct.Contains(product.Id.ToString()))
                                             {
+                                                uniqueproduct.Add(product.Id.ToString());
                                                 @foreach (var productImage2 in Model.ProductImagesModel)
                                                 {
                                                     if (productImage2.ProductId == product.Id)
